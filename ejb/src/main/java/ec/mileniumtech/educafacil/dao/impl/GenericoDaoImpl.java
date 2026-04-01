@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import ec.mileniumtech.educafacil.dao.GenericoDao;
+import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.PersistenceException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,13 +34,21 @@ public class GenericoDaoImpl <T,K> implements GenericoDao<T,K> {
 
 	@Override
 	public T guardar(T entity) {
-		entityManager.persist(entity);
-		return entity;
+		try {
+			entityManager.persist(entity);
+			return entity;
+		} catch (PersistenceException e) {
+			throw new DaoException("Error al persistir la entidad: " + (entityClass != null ? entityClass.getSimpleName() : "Desconocido"), e);
+		}
 	}
 
 	@Override
 	public void remover(T entity) {
-		entityManager.remove(entityManager.merge(entity));
+		try {
+			entityManager.remove(entityManager.merge(entity));
+		} catch (PersistenceException e) {
+			throw new DaoException("Error al eliminar la entidad: " + (entityClass != null ? entityClass.getSimpleName() : "Desconocido"), e);
+		}
 	}
 
 	@Override
@@ -48,9 +58,13 @@ public class GenericoDaoImpl <T,K> implements GenericoDao<T,K> {
 
 	@Override
 	public T actualizar(T entity) {		
-		entityManager.merge(entity);
-		entityManager.flush();
-		return entity;
+		try {
+			entityManager.merge(entity);
+			entityManager.flush();
+			return entity;
+		} catch (PersistenceException e) {
+			throw new DaoException("Error al actualizar la entidad: " + (entityClass != null ? entityClass.getSimpleName() : "Desconocido"), e);
+		}
 	}	
 
 	public void cerrarConexion() {
@@ -68,13 +82,21 @@ public class GenericoDaoImpl <T,K> implements GenericoDao<T,K> {
 
 	@Override
 	public Optional<T> findById(K id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		try {
+			return Optional.ofNullable(entityManager.find(entityClass, id));
+		} catch (PersistenceException e) {
+			throw new DaoException("Error al buscar por ID: " + id, e);
+		}
 	}
 
 	@Override
 	public List<T> findAll() {
-		return getEntityManager().createQuery("SELECT E FROM "+ entityClass.getSimpleName() + "e",entityClass).getResultList();
+		try {
+			String entityName = entityClass != null ? entityClass.getSimpleName() : "";
+			return getEntityManager().createQuery("SELECT E FROM "+ entityName + " E", entityClass).getResultList();
+		} catch (PersistenceException e) {
+			throw new DaoException("Error al listar todas las entidades", e);
+		}
 	}
 	
 }
