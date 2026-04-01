@@ -14,9 +14,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoMatriculasCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleSeguimiento;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.SeguimientoClientes;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.SeguimientoClientesDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -27,9 +26,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClientes, Long>{
+public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClientes, Long> implements SeguimientoClientesDao{
 	public SeguimientoClientesDaoImpl() {
 		
 	}
@@ -44,6 +42,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarSeguimiento(SeguimientoClientes seguimiento, List<DetalleSeguimiento> detalle)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(seguimiento.getSegcId() == null) {
@@ -76,6 +75,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}	
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<SeguimientoClientes> listaSeguimiento() throws DaoException{
 		try {
@@ -89,6 +89,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	}	
 	
 //	LISTA_SEGUIMIENTO_ESTADO
+	@Override
 	public List<SeguimientoClientes> listaSeguimientoVendedorAsignado() throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_VENDEDOR_ASIGNADO);
@@ -99,6 +100,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 			throw new DaoException(e);
 		}
 	}	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<SeguimientoClientes> listaSeguimientoCampania(Integer campania) throws DaoException{
 		try {
@@ -117,6 +119,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<SeguimientoClientes> listaSeguimientoCampaniaVendedor(Integer campaniaS) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_VENDEDOR);
@@ -134,6 +137,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public BigInteger alcanceCampania(int campania)throws DaoException {
 		try {
 			BigInteger alcance = null;
@@ -149,6 +153,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}
 	}
 	
+	@Override
 	public BigInteger prospectosCampania(int campania, String estado)throws DaoException {
 		try {
 			BigInteger alcance = null;
@@ -162,6 +167,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public List<SeguimientoClientes> listaSeguimientoCampaniaCurso(Integer curso) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_CURSO);
@@ -173,6 +179,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public List<SeguimientoClientes> listaSeguimientoCampaniaFechas(Date inicio, Date fin) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_FECHAS);
@@ -186,6 +193,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}
 	}
 	
+	@Override
 	public void actualizarSeguimiento(SeguimientoClientes seguimiento) throws DaoException,EntidadDuplicadaException{
 		try{
 			if(seguimiento.getSegcId() != null) 			
@@ -211,6 +219,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public SeguimientoClientes seguimiento(int id)throws DaoException{
 		try {			
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.BUSCA_SEGUIMIENTO);
@@ -223,6 +232,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}
 	}
 	
+	@Override
 	public SeguimientoClientes validaNumero(String telefono, int curso, int campania) throws DaoException{
 		try {			
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.VALIDA_NUMERO);
@@ -241,6 +251,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<SeguimientoClientes> listaPendientesLlamada() throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.PENDIENTE_LLAMADAS);
@@ -258,6 +269,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public BigDecimal totalDatosCRM(String estado) throws DaoException{
 		List<Object[]> resultado= null;
@@ -275,6 +287,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		return valor;
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public BigDecimal totalDatosCRMVendedor(String estado, Integer vendedor, Integer campania) throws DaoException{
 		List<Object[]> resultado= null;
@@ -297,6 +310,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DtoMatriculasCurso> listaInteresadosCursoCRM() throws DaoException{
 		List<Object[]> resultado= null;
@@ -319,6 +333,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		return listaResultado;
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DtoMatriculasCurso> listaEstadosContactoCursoCRM(String estado) throws DaoException{
 		List<Object[]> resultado= null;

@@ -17,8 +17,8 @@ import ec.mileniumtech.educafacil.bean.estudiantes.BeanFichaEstudiante;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.EstudianteDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
+import ec.mileniumtech.educafacil.dao.EstudianteDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.servicio.ReportesEstudiantesService;
@@ -60,11 +60,11 @@ public class BackingFichaEstudiante implements Serializable {
 	
 	@EJB
 	@Getter
-	private EstudianteDaoImpl estudianteServicioImpl;
+	private EstudianteDao estudianteServicioImpl;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 
 	@EJB
 	@Getter

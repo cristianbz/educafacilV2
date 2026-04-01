@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.EvaluacionCursoDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Long>{
+public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Long> implements EvaluacionCursoDao{
 	public EvaluacionCursoDaoImpl() {
 		
 	}
@@ -31,6 +29,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<EvaluacionCurso> listaDeEvaluacionesDeCurso()throws DaoException{
 		try {
@@ -50,6 +49,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<EvaluacionCurso> listaDeEvaluacionesPorCurso(int codigo, int codigoobj)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(EvaluacionCurso.CARGAR_ENCUESTAS_POR_CURSO_OBJETOEVALUACION);
@@ -68,6 +68,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<EvaluacionCurso> listaDeEvaluacionesDeCursoActivas(int codigoC)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(EvaluacionCurso.CARGAR_ENCUESTAS_POR_CURSO_ACTIVO);
@@ -79,6 +80,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public EvaluacionCurso agregarEvaluacionCurso(EvaluacionCurso evaluacionCurso)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(evaluacionCurso.getEvcuId()==null)

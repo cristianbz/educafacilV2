@@ -9,9 +9,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.CampaniaDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -22,9 +21,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
+public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements CampaniaDao{
 	public CampaniaDaoImpl() {
 		
 	}
@@ -38,6 +36,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Campania> listaCampanias() throws DaoException{
 		try {
@@ -50,6 +49,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 		}
 	}
 	
+	@Override
 	public List<Campania> listaCampaniasporCurso() throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIA_CURSO_ACTIVAS);			
@@ -67,6 +67,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarCampania(Campania campania) throws DaoException, EntidadDuplicadaException{
 		try{
 			if (campania.getCampId() == null)
@@ -92,6 +93,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Campania> listaTodasCampanias() throws DaoException{
 		try {
@@ -104,6 +106,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 		}
 	}
 	
+	@Override
 	public Campania campaniaCurso(int curso) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIA_CURSO);	
@@ -117,6 +120,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long>{
 		}
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public BigDecimal totalGastoCampanias() throws DaoException{
 		List<Object[]> resultado= null;

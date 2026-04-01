@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Capacitacion;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.CapacitacionDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long>{
+public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long> implements CapacitacionDao{
 	public CapacitacionDaoImpl() {
 		
 	}
@@ -37,6 +35,7 @@ public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarCapacitacion(Capacitacion capacitacion) throws DaoException, EntidadDuplicadaException{
 		try{
 			if (capacitacion.getCapaId()==0)
@@ -63,6 +62,7 @@ public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Capacitacion> listaCapacitaciones(int codigoInstructor) throws DaoException{
 		try {

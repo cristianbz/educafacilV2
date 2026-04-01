@@ -7,9 +7,8 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Vendedor;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.VendedorDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -18,9 +17,8 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class VendedorDaoImpl extends GenericoDaoImpl<Vendedor,Long>{
+public class VendedorDaoImpl extends GenericoDaoImpl<Vendedor,Long> implements VendedorDao{
 	public VendedorDaoImpl() {
 		
 	}
@@ -28,6 +26,7 @@ public class VendedorDaoImpl extends GenericoDaoImpl<Vendedor,Long>{
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Vendedor> listaDeVendedores()throws DaoException{
 		try {

@@ -9,7 +9,7 @@ import jakarta.ejb.Stateless;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Empresa;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
@@ -28,7 +28,7 @@ import ec.mileniumtech.educafacil.utilitarios.enumeraciones.EnumEstadosMatricula
 public class MatriculaService {
 
 	@EJB
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 
 	public void grabarMatricula(Persona persona, Matricula matricula, Estudiante estudiante, OfertaCursos ofertaCursosSeleccionado, boolean isEsInscripcion, String codigoCargo, String codigoNivelEstudio, String codigoIngresosMensuales, String codigoMedioInformacion, Empresa empresaSeleccionada) throws EntidadDuplicadaException, DaoException {
 		List<Estudiante> listaEstudiante = new ArrayList<>();

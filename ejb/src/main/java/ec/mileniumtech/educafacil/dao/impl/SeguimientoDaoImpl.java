@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Seguimiento;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.SeguimientoDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long>{
+public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long> implements SeguimientoDao{
 	public SeguimientoDaoImpl() {
 		
 	}
@@ -37,6 +35,7 @@ public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarSeguimiento(Seguimiento seguimiento) throws DaoException,EntidadDuplicadaException{
 		try{			
 			if (seguimiento.getSegmId()==0) {
@@ -63,6 +62,7 @@ public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Seguimiento> listaSeguimientoMatricula(int matricula) throws DaoException{
 		try {

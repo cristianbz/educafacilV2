@@ -15,9 +15,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoFlujoDinero;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetallePagos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pagos;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.PagosDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -28,9 +27,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long>{
+public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long> implements PagosDao{
 	public PagosDaoImpl() {
 		
 	}
@@ -38,6 +36,7 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long>{
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public void agregarPago(Pagos pago)throws DaoException,EntidadDuplicadaException {
 		try{
 			getEntityManager().persist(pago);
@@ -60,6 +59,7 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long>{
 		}	
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DetallePagos> buscaPagosPorMatricula(int codigoMatricula) throws DaoException{
 		try {
@@ -79,6 +79,7 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<DtoFlujoDinero> buscaIngresosReporteria(Date fechaInicial, Date fechaFinal)
 			throws DaoException {
 		try {

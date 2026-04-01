@@ -7,12 +7,12 @@ import jakarta.ejb.Stateless;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.CategoriaRespuestaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.ObjetoEvaluacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PreguntaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.RespuestasDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.TipoEncuestaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.TipoEncuestaPreguntaDaoImpl;
+import ec.mileniumtech.educafacil.dao.CategoriaRespuestaDao;
+import ec.mileniumtech.educafacil.dao.ObjetoEvaluacionDao;
+import ec.mileniumtech.educafacil.dao.PreguntaDao;
+import ec.mileniumtech.educafacil.dao.RespuestasDao;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaDao;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaPreguntaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.CategoriaRespuesta;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.ObjetoEvaluacion;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pregunta;
@@ -27,22 +27,17 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.TipoEncuestaPregunt
 public class ConfiguracionEncuestasService {
 
     @EJB
-    private ObjetoEvaluacionDaoImpl objetoEvaluacionDao;
-
+    private ObjetoEvaluacionDao objetoEvaluacionDao;
     @EJB
-    private TipoEncuestaDaoImpl tipoEncuestaDao;
-
+    private TipoEncuestaDao tipoEncuestaDao;
     @EJB
-    private CategoriaRespuestaDaoImpl categoriaRespuestaDao;
-
+    private CategoriaRespuestaDao categoriaRespuestaDao;
     @EJB
-    private RespuestasDaoImpl respuestasDao;
-
+    private RespuestasDao respuestasDao;
     @EJB
-    private PreguntaDaoImpl preguntaDao;
-
+    private PreguntaDao preguntaDao;
     @EJB
-    private TipoEncuestaPreguntaDaoImpl tipoEncuestaPreguntaDao;
+    private TipoEncuestaPreguntaDao tipoEncuestaPreguntaDao;
 
     /**
      * Guarda un Objeto de Evaluacion verificando duplicados

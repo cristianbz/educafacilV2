@@ -10,7 +10,7 @@ import org.hibernate.Hibernate;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.PersonaDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -23,9 +23,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
+public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements PersonaDao{
 	public PersonaDaoImpl() {
 		
 	}
@@ -39,6 +38,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Persona buscarPersonaPorCedula(String cedula)throws DaoException{
 		try {
 			Persona persona=new Persona();
@@ -61,6 +61,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarPersona(Persona persona)throws DaoException,EntidadDuplicadaException {
 		try{
 			getEntityManager().persist(persona);
@@ -85,6 +86,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public Persona actualizarPersona(Persona persona)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(persona.getPersId()==0)
@@ -111,6 +113,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Persona> buscarPersonaPorApellidos(String apellidos)throws DaoException{
 		try {			
@@ -129,6 +132,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Persona buscarPersonaPorId(int codigo)throws DaoException{
 		try {
 			Persona persona=new Persona();
@@ -152,6 +156,7 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Persona buscarPersonaPorCedulaCorreo(String cedula, String correo)throws DaoException{
 		try {
 			Persona persona=new Persona();

@@ -7,9 +7,8 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.MedioInformacion;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.MedioInformacionDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -18,13 +17,12 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class MedioInformacionDaoImpl extends GenericoDaoImpl<MedioInformacionDaoImpl, Long>{
+public class MedioInformacionDaoImpl extends GenericoDaoImpl<MedioInformacion, Long> implements MedioInformacionDao{
 	public MedioInformacionDaoImpl() {
 		
 	}
-	public MedioInformacionDaoImpl(EntityManager em, Class<MedioInformacionDaoImpl> entityClass) {
+	public MedioInformacionDaoImpl(EntityManager em, Class<MedioInformacion> entityClass) {
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
@@ -33,6 +31,7 @@ public class MedioInformacionDaoImpl extends GenericoDaoImpl<MedioInformacionDao
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<MedioInformacion> listaMediosInformacion() throws DaoException{
 		try {

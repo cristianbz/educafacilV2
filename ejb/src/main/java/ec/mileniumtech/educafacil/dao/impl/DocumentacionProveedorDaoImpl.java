@@ -6,9 +6,8 @@ package ec.mileniumtech.educafacil.dao.impl;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DocumentacionProveedor;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.DocumentacionProveedorDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -19,9 +18,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<DocumentacionProveedor, Long>{
+public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<DocumentacionProveedor, Long> implements DocumentacionProveedorDao{
 	public DocumentacionProveedorDaoImpl() {
 		
 	}
@@ -35,6 +33,7 @@ public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<Documentacion
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarDocumentacionProveedor(DocumentacionProveedor documentacionProveedor)throws DaoException, EntidadDuplicadaException{
 		try{
 			if (documentacionProveedor.getDocpId()==0)
@@ -60,6 +59,7 @@ public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<Documentacion
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public DocumentacionProveedor buscarDocumentacionPorProveedor(int codigoProveedor)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(DocumentacionProveedor.DOCUMENTACION_POR_PROVEEDOR);

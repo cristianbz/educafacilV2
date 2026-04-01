@@ -7,9 +7,8 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Catalogo;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -18,9 +17,8 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long>{
+public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long> implements CatalogoDao{
 	public CatalogoDaoImpl() {
 		
 	}
@@ -34,6 +32,7 @@ public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Catalogo> catalogosPorTipo(String tipoCatalogo) throws DaoException{
 		try {
@@ -52,6 +51,7 @@ public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public List<Catalogo> catalogosPorPadre(Catalogo padre) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Catalogo.BUSCAR_POR_PADRE);

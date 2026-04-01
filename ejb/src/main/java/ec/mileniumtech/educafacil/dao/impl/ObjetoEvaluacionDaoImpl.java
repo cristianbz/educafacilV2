@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.ObjetoEvaluacion;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.ObjetoEvaluacionDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, Long>{
+public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, Long> implements ObjetoEvaluacionDao{
 	public ObjetoEvaluacionDaoImpl() {
 		
 	}
@@ -31,6 +29,7 @@ public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, L
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<ObjetoEvaluacion> listaDeObjetosDeEvaluacion()throws DaoException{
 		try {
@@ -49,6 +48,7 @@ public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, L
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public ObjetoEvaluacion actualizarObjetoEvaluacion(ObjetoEvaluacion objetoEvaluacion)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(objetoEvaluacion.getObjeId()==null)

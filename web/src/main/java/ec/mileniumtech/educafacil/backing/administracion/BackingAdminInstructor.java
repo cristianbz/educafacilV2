@@ -12,10 +12,10 @@ import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.administracion.BeanAdminInstructor;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.InstructorException;
-import ec.mileniumtech.educafacil.dao.impl.CapacitacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.FormacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.InstructorDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PersonaDaoImpl;
+import ec.mileniumtech.educafacil.dao.CapacitacionDao;
+import ec.mileniumtech.educafacil.dao.FormacionDao;
+import ec.mileniumtech.educafacil.dao.InstructorDao;
+import ec.mileniumtech.educafacil.dao.PersonaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Instructor;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -48,19 +48,19 @@ public class BackingAdminInstructor implements Serializable{
 	
 	@EJB
 	@Getter	
-	private InstructorDaoImpl instructorServicioImpl;
+	private InstructorDao instructorServicioImpl;
 	
 	@EJB
 	@Getter
-	private FormacionDaoImpl formacionServicioImpl;
+	private FormacionDao formacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private CapacitacionDaoImpl capacitacionServicioImpl;
+	private CapacitacionDao capacitacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private PersonaDaoImpl personaServicioImpl;
+	private PersonaDao personaServicioImpl;
 	
 	/**
 	 * Carga los instructores

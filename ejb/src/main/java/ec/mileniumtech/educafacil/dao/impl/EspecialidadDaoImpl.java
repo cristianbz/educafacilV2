@@ -7,7 +7,7 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Especialidad;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.EspecialidadDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -18,9 +18,8 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class EspecialidadDaoImpl extends GenericoDaoImpl<Especialidad, Long> {
+public class EspecialidadDaoImpl extends GenericoDaoImpl<Especialidad, Long> implements EspecialidadDao {
 	public EspecialidadDaoImpl() {
 		
 	}
@@ -33,6 +32,7 @@ public class EspecialidadDaoImpl extends GenericoDaoImpl<Especialidad, Long> {
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Especialidad> listaDeEspecialidades()throws DaoException{
 		try {

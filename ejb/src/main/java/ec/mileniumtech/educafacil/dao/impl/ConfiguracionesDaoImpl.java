@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Area;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Configuraciones;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.ConfiguracionesDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -19,9 +18,8 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class ConfiguracionesDaoImpl extends GenericoDaoImpl<Configuraciones,Long>{
+public class ConfiguracionesDaoImpl extends GenericoDaoImpl<Configuraciones,Long> implements ConfiguracionesDao{
 	public ConfiguracionesDaoImpl() {
 		
 	}
@@ -34,6 +32,7 @@ public class ConfiguracionesDaoImpl extends GenericoDaoImpl<Configuraciones,Long
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Configuraciones> listaConfiguraciones()throws DaoException{
 		try {

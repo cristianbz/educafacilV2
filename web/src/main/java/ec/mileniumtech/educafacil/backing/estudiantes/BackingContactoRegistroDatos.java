@@ -17,10 +17,10 @@ import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanContactoRegistroDatos;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.CatalogoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.SeguimientoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioDaoImpl;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.SeguimientoDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Seguimiento;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -55,19 +55,19 @@ public class BackingContactoRegistroDatos implements Serializable {
 	private MensajesBacking mensajesBacking;
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	
 	@EJB
 	@Getter
-	private SeguimientoDaoImpl seguimientoServicioImpl;
+	private SeguimientoDao seguimientoServicioImpl;
 	
 	@EJB
 	@Getter
-	private CatalogoDaoImpl catalogoServicioImpl;
+	private CatalogoDao catalogoServicioImpl;
 	
 	@EJB
 	@Getter
-	private UsuarioDaoImpl usuarioServicioImpl;
+	private UsuarioDao usuarioServicioImpl;
 	
 	
 	/**

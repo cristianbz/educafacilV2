@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.primefaces.model.TreeNode;
 
+import ec.mileniumtech.educafacil.modelo.persistencia.dto.NodoEvaluacion;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleEvaluaCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
@@ -47,16 +48,16 @@ public class BeanAplicarEncuesta implements Serializable{
 	
 	@Getter
 	@Setter
-	private TreeNode<EvaluacionCurso> raiz;
+	private TreeNode<NodoEvaluacion> raiz;
 	@Getter
 	@Setter
-	private TreeNode nodoSeleccionado;
+	private TreeNode<NodoEvaluacion> nodoSeleccionado;
 	@Getter
 	@Setter
-	private TreeNode<EvaluacionCurso> cursos;
+	private TreeNode<NodoEvaluacion> cursos;
 	@Getter
 	@Setter
-	private TreeNode<EvaluacionCurso> evaluaciones;
+	private TreeNode<NodoEvaluacion> evaluaciones;
 	@Getter
 	@Setter
 	private String nombreCursoSeleccionado;

@@ -20,8 +20,8 @@ import org.primefaces.model.charts.pie.PieChartDataSet;
 import org.primefaces.model.charts.pie.PieChartModel;
 
 import ec.mileniumtech.educafacil.bean.contabilidad.BeanReporteria;
-import ec.mileniumtech.educafacil.dao.impl.EgresoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PagosDaoImpl;
+import ec.mileniumtech.educafacil.dao.EgresoDao;
+import ec.mileniumtech.educafacil.dao.PagosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoFlujoDinero;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
 import ec.mileniumtech.educafacil.utilitarios.fechas.FechaFormato;
@@ -45,11 +45,11 @@ public class BackingReporteria implements Serializable{
 	
 	@EJB
 	@Getter
-	private EgresoDaoImpl egresoServicio;
+	private EgresoDao egresoServicio;
 	
 	@EJB
 	@Getter
-	private PagosDaoImpl pagosServicio;
+	private PagosDao pagosServicio;
 	
 	@Inject
 	@Getter

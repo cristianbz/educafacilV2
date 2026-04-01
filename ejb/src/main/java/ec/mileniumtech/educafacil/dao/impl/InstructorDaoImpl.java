@@ -9,7 +9,7 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Instructor;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.InstructorDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -22,9 +22,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long>{
+public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long> implements InstructorDao{
 	public InstructorDaoImpl() {
 		
 	}
@@ -37,6 +36,7 @@ public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Instructor> listaInstructores() throws DaoException{
 		try {
@@ -54,6 +54,7 @@ public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarInstructor(Instructor instructor) throws DaoException,EntidadDuplicadaException{
 		try{
 			Persona persona=new Persona();

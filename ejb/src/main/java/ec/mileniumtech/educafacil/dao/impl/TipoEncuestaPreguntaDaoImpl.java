@@ -10,9 +10,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoEncuestas;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.TipoEncuestaPregunta;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaPreguntaDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -23,9 +22,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPregunta, Long>{
+public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPregunta, Long> implements TipoEncuestaPreguntaDao{
 	public TipoEncuestaPreguntaDaoImpl() {
 		
 	}
@@ -33,6 +31,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<TipoEncuestaPregunta> listaDePreguntas(int codigoP)throws DaoException{
 		try {
@@ -46,6 +45,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 		}
 		
 }
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<TipoEncuestaPregunta> listaDeTiposDeEncuestas()throws DaoException{
 		try {
@@ -63,6 +63,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
  * @return
  * @throws DaoException
  */
+	@Override
 	public List<TipoEncuestaPregunta> listaDeEncuestas(int codigoT)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_ENCUESTAS);
@@ -75,6 +76,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 		}
 	}
 	
+	@Override
 	public List<TipoEncuestaPregunta> listaPorTipoDeEncuestas(int codigoTipo)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_POR_TIPO_ENCUESTA);
@@ -87,6 +89,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 		}
 	}
 	
+	@Override
 	public TipoEncuestaPregunta agregarActualizarTipoEncuestaPregunta(TipoEncuestaPregunta tipoEncuestaPregunta)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(tipoEncuestaPregunta.getTeprId()==null)
@@ -115,6 +118,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DtoEncuestas> guardarRespuestasEncuestas(int encuesta)
 			throws DaoException {

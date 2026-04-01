@@ -36,10 +36,10 @@ import org.primefaces.model.file.UploadedFile;
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanSeguimientoClientes;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
-import ec.mileniumtech.educafacil.dao.impl.CampaniaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.DetalleSeguimientoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.SeguimientoClientesDaoImpl;
+import ec.mileniumtech.educafacil.dao.CampaniaDao;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.DetalleSeguimientoDao;
+import ec.mileniumtech.educafacil.dao.SeguimientoClientesDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleSeguimiento;
@@ -86,15 +86,15 @@ public class BackingSeguimientoClientes implements Serializable{
 	
 	@EJB
 	@Getter
-	private SeguimientoClientesDaoImpl seguimientoDao;
+	private SeguimientoClientesDao seguimientoDao;
 
 	@EJB
 	@Getter
-	private CursoDaoImpl cursosServicio;
+	private CursoDao cursosServicio;
 
 	@EJB
 	@Getter
-	private SeguimientoClientesDaoImpl seguimientoClientesServicioImpl;
+	private SeguimientoClientesDao seguimientoClientesServicioImpl;
 
 	@EJB
 	@Getter
@@ -102,7 +102,7 @@ public class BackingSeguimientoClientes implements Serializable{
 
 	@EJB
 	@Getter
-	private DetalleSeguimientoDaoImpl detalleServicio;
+	private DetalleSeguimientoDao detalleServicio;
 
 	@Inject
 	@Getter
@@ -110,7 +110,7 @@ public class BackingSeguimientoClientes implements Serializable{
 	
 	@EJB
 	@Getter
-	private CampaniaDaoImpl campaniaDao;
+	private CampaniaDao campaniaDao;
 	
 	private Integer idCampania;
 

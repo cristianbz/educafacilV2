@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleEvaluaCurso;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.DetalleEvaluaCursoDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurso, Long>{
+public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurso, Long> implements DetalleEvaluaCursoDao{
 	public DetalleEvaluaCursoDaoImpl() {
 		
 	}
@@ -31,6 +29,7 @@ public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurs
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DetalleEvaluaCurso> listaDeDetallesDeEvaluacionDeCursos()throws DaoException{
 		try {
@@ -43,6 +42,7 @@ public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurs
 		}
 	}
 	
+	@Override
 	public void guardarEncuesta(DetalleEvaluaCurso detalle) throws DaoException, EntidadDuplicadaException{
 		try{
 			if (detalle.getDevcId() == null)

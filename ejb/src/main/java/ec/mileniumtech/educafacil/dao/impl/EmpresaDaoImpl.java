@@ -8,7 +8,7 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Empresa;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.EmpresaDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -21,9 +21,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long>{
+public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long> implements EmpresaDao{
 	public EmpresaDaoImpl() {
 		
 	}
@@ -36,6 +35,7 @@ public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Empresa> listaEmpresas() throws DaoException{
 		try {
@@ -53,6 +53,7 @@ public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarEmpresa(Empresa empresa) throws DaoException,EntidadDuplicadaException {
 		try{
 			if (empresa.getEmprId()==0)

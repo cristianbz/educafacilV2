@@ -22,9 +22,9 @@ import org.primefaces.model.charts.optionconfig.title.Title;
 
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanGestionVendedores;
-import ec.mileniumtech.educafacil.dao.impl.CampaniaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.SeguimientoClientesDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.VendedorDaoImpl;
+import ec.mileniumtech.educafacil.dao.CampaniaDao;
+import ec.mileniumtech.educafacil.dao.SeguimientoClientesDao;
+import ec.mileniumtech.educafacil.dao.VendedorDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.SeguimientoClientes;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Vendedor;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -58,15 +58,15 @@ public class BackingGestionVendedores implements Serializable{
 	
 	@Getter
 	@Inject
-	private CampaniaDaoImpl campaniaServicioImpl;
+	private CampaniaDao campaniaServicioImpl;
 	
 	@Getter
 	@Inject
-	private VendedorDaoImpl vendedorServicioImpl;
+	private VendedorDao vendedorServicioImpl;
 	
 	@Getter
 	@Inject
-	private SeguimientoClientesDaoImpl seguimientoClientesServicioImpl;
+	private SeguimientoClientesDao seguimientoClientesServicioImpl;
 	
 	@Setter
 	@Getter

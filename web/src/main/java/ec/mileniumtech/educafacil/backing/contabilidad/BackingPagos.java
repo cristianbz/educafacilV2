@@ -24,10 +24,10 @@ import ec.mileniumtech.educafacil.backing.estudiantes.ComponenteBuscaEstudiante;
 import ec.mileniumtech.educafacil.bean.contabilidad.BeanPagos;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.impl.CatalogoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PagosDaoImpl;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.PagosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetallePagos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
@@ -69,19 +69,19 @@ public class BackingPagos implements Serializable{
 
 	@EJB
 	@Getter
-	private CatalogoDaoImpl catalogoServicio;
+	private CatalogoDao catalogoServicio;
 
 	@EJB
 	@Getter
-	private PagosDaoImpl pagosServicio;
+	private PagosDao pagosServicio;
 
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaServicios;
+	private OfertaCursosDao ofertaServicios;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicios;
+	private MatriculaDao matriculaServicios;
 	
 	@Inject
 	@Getter

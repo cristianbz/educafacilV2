@@ -22,16 +22,16 @@ import ec.mileniumtech.educafacil.bean.estudiantes.BeanMatriculaOnline;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.CampaniaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CatalogoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.ConfiguracionesDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EmpresaDaoImpl;
+import ec.mileniumtech.educafacil.dao.CampaniaDao;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
+import ec.mileniumtech.educafacil.dao.ConfiguracionesDao;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.EmpresaDao;
 import ec.mileniumtech.educafacil.servicio.MatriculaService;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PersonaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioRolDaoImpl;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.PersonaDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
+import ec.mileniumtech.educafacil.dao.UsuarioRolDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Catalogo;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Empresa;
@@ -70,15 +70,15 @@ public class BackingMatriculaOnline implements Serializable {
 
 	@EJB
 	@Getter	
-	private ConfiguracionesDaoImpl configuracionesServicioImpl;
+	private ConfiguracionesDao configuracionesServicioImpl;
 	
 	@EJB
 	@Getter	
-	private CampaniaDaoImpl campaniaServicioImpl;
+	private CampaniaDao campaniaServicioImpl;
 	
 	@EJB
 	@Getter	
-	private CatalogoDaoImpl catalogoServicioImpl;
+	private CatalogoDao catalogoServicioImpl;
 	
 	@Inject
 	@Getter
@@ -88,18 +88,18 @@ public class BackingMatriculaOnline implements Serializable {
 	private MensajesBacking mensajesBacking;
 	@Getter
 	@EJB
-	private EmpresaDaoImpl empresaServicioImpl; 
+	private EmpresaDao empresaServicioImpl; 
 	@EJB
 	@Getter
-	private CursoDaoImpl cursoServicioImpl;
+	private CursoDao cursoServicioImpl;
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaServicios;
+	private OfertaCursosDao ofertaServicios;
 	
 	@EJB
 	@Getter
-	private PersonaDaoImpl personaServicioImpl;
+	private PersonaDao personaServicioImpl;
 	
 	@EJB
 	@Getter
@@ -107,11 +107,11 @@ public class BackingMatriculaOnline implements Serializable {
 	
 	@EJB
 	@Getter
-	private UsuarioDaoImpl usuarioServicioImpl;
+	private UsuarioDao usuarioServicioImpl;
 	
 	@EJB
 	@Getter
-	private UsuarioRolDaoImpl usuarioRolServicioImpl;
+	private UsuarioRolDao usuarioRolServicioImpl;
 	
 	@Getter
 	@Setter
@@ -272,7 +272,7 @@ public class BackingMatriculaOnline implements Serializable {
 	public void validaMatricula() {
 		try {			
 			if(getBeanMatricula().getEstudiante()!= null) {
-				List<Campania> listaCampanias=new ArrayList();
+				List<Campania> listaCampanias=new ArrayList<>();
 
 				int oferta = getBeanMatricula().getCursoSeleccionado().getOcurId();
 				Matricula matricula = getMatriculaServicio().existeMatricula(oferta, getBeanMatricula().getEstudiante().getEstuId() );

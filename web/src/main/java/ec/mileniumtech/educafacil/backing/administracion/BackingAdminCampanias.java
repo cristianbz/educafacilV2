@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
 
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.administracion.BeanAdminCampanias;
-import ec.mileniumtech.educafacil.dao.impl.CampaniaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.SeguimientoClientesDaoImpl;
+import ec.mileniumtech.educafacil.dao.CampaniaDao;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.SeguimientoClientesDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -49,15 +49,15 @@ public class BackingAdminCampanias implements Serializable{
 	
 	@EJB
 	@Getter
-	private CampaniaDaoImpl campaniaDao;
+	private CampaniaDao campaniaDao;
 	
 	@EJB
 	@Getter
-	private CursoDaoImpl cursoDaoImpl;
+	private CursoDao cursoDaoImpl;
 	
 	@EJB
 	@Getter
-	private SeguimientoClientesDaoImpl seguimientoDao;
+	private SeguimientoClientesDao seguimientoDao;
 	
 	@Inject
 	@Getter

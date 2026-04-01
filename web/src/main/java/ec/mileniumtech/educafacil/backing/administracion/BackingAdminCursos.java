@@ -14,14 +14,14 @@ import ec.mileniumtech.educafacil.bean.administracion.BeanAdminCursos;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.dao.excepciones.OfertaCursosException;
-import ec.mileniumtech.educafacil.dao.impl.AreaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CatalogoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EvaluacionCursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.InstructorDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.ObjetoEvaluacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCapacitacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.TipoEncuestaDaoImpl;
+import ec.mileniumtech.educafacil.dao.AreaDao;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
+import ec.mileniumtech.educafacil.dao.EvaluacionCursoDao;
+import ec.mileniumtech.educafacil.dao.InstructorDao;
+import ec.mileniumtech.educafacil.dao.ObjetoEvaluacionDao;
+import ec.mileniumtech.educafacil.dao.OfertaCapacitacionDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.ObjetoEvaluacion;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
@@ -59,35 +59,35 @@ public class BackingAdminCursos implements Serializable{
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl;
+	private OfertaCursosDao ofertaCursosServicioImpl;
 	
 	@EJB
 	@Getter
-	private InstructorDaoImpl instructorServicioImpl;
+	private InstructorDao instructorServicioImpl;
 	
 	@EJB
 	@Getter
-	private AreaDaoImpl areaServicioImpl;
+	private AreaDao areaServicioImpl;
 	
 	@EJB
 	@Getter
-	private OfertaCapacitacionDaoImpl ofertaCapacitacionServicioImpl;
+	private OfertaCapacitacionDao ofertaCapacitacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private ObjetoEvaluacionDaoImpl objetoEvaluacionServicioImpl;
+	private ObjetoEvaluacionDao objetoEvaluacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private TipoEncuestaDaoImpl tipoEncuestaServicioImpl;
+	private TipoEncuestaDao tipoEncuestaServicioImpl;
 	
 	@EJB
 	@Getter
-	private CatalogoDaoImpl catalogoServicioImpl;
+	private CatalogoDao catalogoServicioImpl;
 	
 	@EJB
 	@Getter
-	private EvaluacionCursoDaoImpl evaluacionCursoServicioImpl;
+	private EvaluacionCursoDao evaluacionCursoServicioImpl;
 
 	@EJB
 	@Getter

@@ -18,9 +18,9 @@ import ec.mileniumtech.educafacil.bean.contabilidad.BeanPagos;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanBuscaEstudiante;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanFichaEstudiante;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.impl.EstudianteDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PagosDaoImpl;
+import ec.mileniumtech.educafacil.dao.EstudianteDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.PagosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -55,15 +55,15 @@ public class ComponenteBuscaEstudiante implements Serializable{
 	
 	@EJB
 	@Getter
-	private EstudianteDaoImpl estudianteServicioImpl;
+	private EstudianteDao estudianteServicioImpl;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	
 	@EJB
 	@Getter
-	private PagosDaoImpl pagosServicioImpl;
+	private PagosDao pagosServicioImpl;
 	
 	@Inject
 	@Getter

@@ -23,14 +23,14 @@ import ec.mileniumtech.educafacil.bean.estudiantes.BeanInscripcionMatricula;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.AreaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EspecialidadDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MedioInformacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCapacitacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.PersonaDaoImpl;
+import ec.mileniumtech.educafacil.dao.AreaDao;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.EspecialidadDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.MedioInformacionDao;
+import ec.mileniumtech.educafacil.dao.OfertaCapacitacionDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.PersonaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Empresa;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
@@ -87,35 +87,35 @@ public class ComponenteBackingMatriculaInscripcion implements Serializable{
 		
 	@EJB
 	@Getter
-	private AreaDaoImpl areaServicioImpl;
+	private AreaDao areaServicioImpl;
 	
 	@EJB
 	@Getter
-	private MedioInformacionDaoImpl medioInformacionServicioImpl;
+	private MedioInformacionDao medioInformacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private EspecialidadDaoImpl especialidadServicioImpl;
+	private EspecialidadDao especialidadServicioImpl;
 	
 	@EJB
 	@Getter
-	private CursoDaoImpl cursoServicioImpl;
+	private CursoDao cursoServicioImpl;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	
 	@EJB
 	@Getter
-	private OfertaCapacitacionDaoImpl ofertaCapacitacionServicioImpl;
+	private OfertaCapacitacionDao ofertaCapacitacionServicioImpl;
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl; 
+	private OfertaCursosDao ofertaCursosServicioImpl;
 	
 	@EJB
 	@Getter
-	private PersonaDaoImpl personaServicioImpl;
+	private PersonaDao personaServicioImpl;
 	
 	@EJB
 	@Getter

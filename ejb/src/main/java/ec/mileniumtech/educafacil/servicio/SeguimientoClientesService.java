@@ -20,7 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import ec.mileniumtech.educafacil.dao.impl.SeguimientoClientesDaoImpl;
+import ec.mileniumtech.educafacil.dao.SeguimientoClientesDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleSeguimiento;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.SeguimientoClientes;
@@ -35,7 +35,7 @@ import ec.mileniumtech.educafacil.utilitarios.fechas.FechaFormato;
 public class SeguimientoClientesService {
 
 	@EJB
-	private SeguimientoClientesDaoImpl seguimientoClientesServicioImpl;
+	private SeguimientoClientesDao seguimientoClientesServicioImpl;
 
 	public List<SeguimientoClientes> parseArchivoExcelSeguimiento(InputStream inp) throws Exception {
 		List<SeguimientoClientes> listadoSeguimientoExcel = new ArrayList<>();

@@ -20,8 +20,12 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pagos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Usuario;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.UsuarioRol;
+import ec.mileniumtech.educafacil.dao.EstudianteDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.PersonaDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
+import ec.mileniumtech.educafacil.dao.UsuarioRolDao;
 import jakarta.ejb.EJB;
-import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -35,21 +39,20 @@ import lombok.Getter;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
+public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long> implements MatriculaDao{
 	@EJB
 	@Getter
-	private UsuarioDaoImpl usuarioDaoImpl;
+	private UsuarioDao usuarioDaoImpl;
 	@EJB
 	@Getter
-	private PersonaDaoImpl personaDaoImpl;
+	private PersonaDao personaDaoImpl;
 	@EJB
 	@Getter
-	private EstudianteDaoImpl estudianteDaoImpl;
+	private EstudianteDao estudianteDaoImpl;
 	@EJB
 	@Getter
-	private UsuarioRolDaoImpl usuarioRolDaoImpl;
+	private UsuarioRolDao usuarioRolDaoImpl;
 	public MatriculaDaoImpl() {
 		
 	}
@@ -63,6 +66,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarMatriculaInscripcion(Persona persona,Matricula matricula, Usuario usuario, UsuarioRol usuarioRol)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(persona.getPersId()==0) {
@@ -105,6 +109,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculasAlumno(int codigoPersona,String codigoEstado)throws DaoException{
 		try {
@@ -128,6 +133,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculasInscripcion(String estado,Date fechaInicio,Date fechaFin) throws DaoException{
 		try {
@@ -147,6 +153,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 		}
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculasCurso(String estado,int codigoCurso) throws DaoException{
 		try {
@@ -166,6 +173,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculadosOEnCursoPorOferta(int codigoOferta) throws DaoException{
 		try {
@@ -184,6 +192,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings({ "unchecked", "unused" })
 	public List<Matricula> listaOportunidades() throws DaoException{
 		try {
@@ -202,6 +211,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculasEstudiante(int codigoEstudiante) throws DaoException{
 		try {
@@ -220,6 +230,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @param matricula
 	 * @throws DaoException
 	 */
+	@Override
 	public void actualizaMatricula(Matricula matricula) throws DaoException{
 		try {
 			getEntityManager().merge(matricula);
@@ -227,6 +238,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public void actualizaMatriculaUsuario(Matricula matricula, Usuario usuario)throws DaoException{
 		try {			 
 			actualizaMatricula(matricula);
@@ -242,6 +254,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Matricula existeMatricula(int oferta,int estudiante)throws DaoException{
 		try {
 			
@@ -256,6 +269,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public List<Matricula> listaMatriculadosPorOfertaCurso(int codigoOferta) throws DaoException{
 		try {
 			Query query=null;
@@ -281,6 +295,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 			throw new DaoException(e);
 		}
 	}	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Matricula> listaMatriculasEstudianteActivas(int codigoEstudiante) throws DaoException{
 		try {
@@ -300,6 +315,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	public BigDecimal totalDatosMatricula(int estado) throws DaoException{
 		List<Object[]> resultado= null;
 		BigDecimal valor= new BigDecimal(0);
@@ -325,6 +341,7 @@ public class MatriculaDaoImpl extends GenericoDaoImpl<Matricula, Long>{
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<DtoMatriculasCurso> listaMatriculasCurso(int tipo) throws DaoException{
 		List<Object[]> resultado= null;

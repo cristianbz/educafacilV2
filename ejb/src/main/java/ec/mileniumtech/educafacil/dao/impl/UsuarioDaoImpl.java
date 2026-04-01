@@ -11,9 +11,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.ObjetosMenuDto;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Usuario;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -24,9 +23,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
+public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements UsuarioDao{
 	public UsuarioDaoImpl() {
 		
 	}
@@ -40,6 +38,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Usuario actualizaUsuario(Usuario usuario) throws DaoException{
 		Usuario user=null;
 		try {
@@ -50,6 +49,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 		return user;
 	}
 	
+	@Override
 	public Usuario agregarUsuario(Usuario usuario)throws DaoException,EntidadDuplicadaException {
 	try{
 		if(usuario.getUsuaId()==null) 
@@ -77,6 +77,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Usuario consultarUsuario(String usuario) throws DaoException{
 		try {
 			Query query = getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO_POR_USUARIO);
@@ -94,6 +95,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<ObjetosMenuDto> buscarAccesosUsuario(String correo)
 			throws DaoException {
@@ -159,6 +161,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Usuario consultarUsuarioPorDocumento(String documento) throws DaoException{
 		try {
 			Query query = getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO_POR_NRO_IDENTIFICACION);
@@ -176,6 +179,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Usuario> consultarUsuariosPorIdRol(int idRol)throws DaoException {
 		try {

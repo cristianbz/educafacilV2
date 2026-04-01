@@ -4,16 +4,14 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Area;
-import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+import ec.mileniumtech.educafacil.dao.AreaDao;
 
-@LocalBean
 @Stateless
-public class AreaDaoImpl extends GenericoDaoImpl<Area,Long>{
+public class AreaDaoImpl extends GenericoDaoImpl<Area,Long> implements AreaDao {
 
 	public AreaDaoImpl() {
 		
@@ -28,6 +26,7 @@ public class AreaDaoImpl extends GenericoDaoImpl<Area,Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Area> listaDeAreas()throws DaoException{
 		try {

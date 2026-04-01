@@ -7,7 +7,7 @@ import java.util.List;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.CursoDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -18,9 +18,8 @@ import jakarta.persistence.Query;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long>{
+public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long> implements CursoDao{
 	public CursoDaoImpl() {
 		
 	}
@@ -33,6 +32,7 @@ public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Curso> listaCursos()throws DaoException{
 		try {
@@ -45,6 +45,7 @@ public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long>{
 		}
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Curso> listaOfertaCursosActivos()throws DaoException{
 		try {

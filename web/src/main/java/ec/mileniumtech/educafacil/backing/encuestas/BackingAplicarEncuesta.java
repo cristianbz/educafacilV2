@@ -16,19 +16,20 @@ import org.primefaces.model.TreeNode;
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.encuestas.BeanAplicarEncuesta;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
-import ec.mileniumtech.educafacil.dao.impl.DetalleEvaluaCursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EstudianteDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EvaluacionCursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.RespuestasDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.TipoEncuestaPreguntaDaoImpl;
+import ec.mileniumtech.educafacil.dao.DetalleEvaluaCursoDao;
+import ec.mileniumtech.educafacil.dao.EstudianteDao;
+import ec.mileniumtech.educafacil.dao.EvaluacionCursoDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.RespuestasDao;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaPreguntaDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleEvaluaCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pregunta;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Respuestas;
+import ec.mileniumtech.educafacil.modelo.persistencia.dto.NodoEvaluacion;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
 import ec.mileniumtech.educafacil.utilitarios.enumeraciones.EnumEstadosMatricula;
 import jakarta.annotation.PostConstruct;
@@ -52,31 +53,31 @@ public class BackingAplicarEncuesta implements Serializable{
 	private static final Logger log = Logger.getLogger(BackingAplicarEncuesta.class);
 	@EJB
 	@Getter
-	private EstudianteDaoImpl estudianteServicioImpl;
+	private EstudianteDao estudianteServicioImpl;
 	
 	@EJB
 	@Getter
-	private EvaluacionCursoDaoImpl evaluacionCursoServicioImpl;
+	private EvaluacionCursoDao evaluacionCursoServicioImpl;
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl;
+	private OfertaCursosDao ofertaCursosServicioImpl;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	
 	@EJB
 	@Getter
-	private TipoEncuestaPreguntaDaoImpl tipoEncuestaPreguntaServicioImpl;
+	private TipoEncuestaPreguntaDao tipoEncuestaPreguntaServicioImpl;
 	
 	@EJB
 	@Getter
-	private RespuestasDaoImpl respuestasServicioImpl;
+	private RespuestasDao respuestasServicioImpl;
 	
 	@EJB
 	@Getter
-	private DetalleEvaluaCursoDaoImpl detalleEvaluaCursoServicioImpl;
+	private DetalleEvaluaCursoDao detalleEvaluaCursoServicioImpl;
 	
 	@Inject
 	@Getter
@@ -144,14 +145,16 @@ public class BackingAplicarEncuesta implements Serializable{
 	
 	
 	public void armarArbolCursosMatriculados(List<Matricula> lista) {
-	    getBeanAplicarEncuesta().setRaiz(new DefaultTreeNode("Root", null));
-	    TreeNode nodoCursos;
-	    TreeNode nodoEncuesta;
+	    NodoEvaluacion root = new NodoEvaluacion();
+	    root.setNombre("Root");
+	    getBeanAplicarEncuesta().setRaiz(new DefaultTreeNode<>(root, null));
+	    TreeNode<NodoEvaluacion> nodoCursos;
+	    TreeNode<NodoEvaluacion> nodoEncuesta;
 	    for (Matricula matricula : lista) {
 	    	String infoCurso=matricula.getOfertaCursos().getOfertaCapacitacion().getCurso().getCursNombre().concat("-").concat(matricula.getOfertaCursos().getOcurHorario()).toString();
 	    	NodoEvaluacion nodoC = new NodoEvaluacion();
 	    	nodoC.setNombre(infoCurso);
-	    	nodoCursos = new DefaultTreeNode(nodoC,getBeanAplicarEncuesta().getRaiz());
+	    	nodoCursos = new DefaultTreeNode<>(nodoC,getBeanAplicarEncuesta().getRaiz());
 	    	
 	    	for (EvaluacionCurso  evaluacion : getBeanAplicarEncuesta().getListaEvaluacionCurso()) {
 	    		String nodoEnc= evaluacion.getTipoEncuesta().getTipeDescripcion();//.concat(evaluacion.getEvcuId().toString());
@@ -164,7 +167,7 @@ public class BackingAplicarEncuesta implements Serializable{
 					nodoE.setMatriculaId(matricula.getMatrId().toString());					
 					nodoE.setEvaRealizadas(matricula.getMatrEvaluacionesRealizadas());
 					nodoE.setOfertaCursoId(String.valueOf(matricula.getOfertaCursos().getOcurId()));
-					nodoEncuesta = new DefaultTreeNode(nodoE,nodoCursos);		
+					nodoEncuesta = new DefaultTreeNode<>(nodoE,nodoCursos);		
 				}
 			}
 		}
@@ -290,33 +293,5 @@ public class BackingAplicarEncuesta implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
-//	Clase para armar el arbol	
-	public class NodoEvaluacion{
-		@Getter
-		@Setter
-		private String nombre;
-		@Getter
-		@Setter
-		private String curso;
-		@Getter
-		@Setter
-		private String evaluacionCursoId;
-		@Getter
-		@Setter
-		private String tipoEncuestaId;
-		@Getter
-		@Setter
-		private String matriculaId;
-		@Getter
-		@Setter
-		private String evaRealizadas;
-		@Getter
-		@Setter
-		private String ofertaCursoId;
-		
-	}
-	
-	
 	
 }

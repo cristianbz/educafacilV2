@@ -13,7 +13,7 @@ import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.contabilidad.BeanProveedor;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.ProveedorDaoImpl;
+import ec.mileniumtech.educafacil.dao.ProveedorDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DocumentacionProveedor;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Proveedor;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -47,7 +47,7 @@ public class BackingProveedor implements Serializable {
 	
 	@Getter
 	@EJB
-	private ProveedorDaoImpl proveedorServicioImpl;
+	private ProveedorDao proveedorServicioImpl;
 	
 	@Getter
 	@Setter

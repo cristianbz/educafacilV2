@@ -13,9 +13,9 @@ import org.apache.log4j.Logger;
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.contabilidad.BeanEgresos;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
-import ec.mileniumtech.educafacil.dao.impl.CatalogoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EgresoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.ProveedorDaoImpl;
+import ec.mileniumtech.educafacil.dao.CatalogoDao;
+import ec.mileniumtech.educafacil.dao.EgresoDao;
+import ec.mileniumtech.educafacil.dao.ProveedorDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Egresos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Proveedor;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
@@ -41,15 +41,15 @@ public class BackingEgresos implements Serializable{
 
 	@EJB
 	@Getter
-	private CatalogoDaoImpl catalogoServicio;
+	private CatalogoDao catalogoServicio;
 
 	@EJB
 	@Getter
-	private EgresoDaoImpl egresoServicio;
+	private EgresoDao egresoServicio;
 
 	@EJB
 	@Getter
-	private ProveedorDaoImpl proveedorServicio;
+	private ProveedorDao proveedorServicio;
 
 	@Inject
 	@Getter

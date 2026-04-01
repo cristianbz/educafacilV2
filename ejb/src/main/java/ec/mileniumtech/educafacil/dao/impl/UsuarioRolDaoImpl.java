@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.UsuarioRol;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.UsuarioRolDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long>{
+public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long> implements UsuarioRolDao{
 	public UsuarioRolDaoImpl() {
 		
 	}
@@ -31,6 +29,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long>{
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<UsuarioRol> listaDeUsuarioRol()throws DaoException{
 		try {
@@ -43,6 +42,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long>{
 		}
 	}
 	
+	@Override
 	public List<UsuarioRol> listaUsuarioRolPorUsuario(int idUsuario)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(UsuarioRol.CARGAR_Usuario_Rol_Por_IDUsuario);
@@ -55,6 +55,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long>{
 		}
 	}
 	
+	@Override
 	public UsuarioRol agregarUsuarioRol(UsuarioRol usuarioRol)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(usuarioRol.getUrolId()==null) 

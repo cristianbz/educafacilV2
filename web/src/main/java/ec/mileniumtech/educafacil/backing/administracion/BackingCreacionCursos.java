@@ -18,10 +18,10 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.dao.excepciones.EspecialidadException;
 import ec.mileniumtech.educafacil.dao.excepciones.OfertaCapacitacionException;
-import ec.mileniumtech.educafacil.dao.impl.AreaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.EspecialidadDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCapacitacionDaoImpl;
+import ec.mileniumtech.educafacil.dao.AreaDao;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.EspecialidadDao;
+import ec.mileniumtech.educafacil.dao.OfertaCapacitacionDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Instructor;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCapacitacion;
@@ -58,16 +58,16 @@ public class BackingCreacionCursos implements Serializable{
 	
 	@EJB
 	@Getter
-	private CursoDaoImpl cursoServicioImpl;
+	private CursoDao cursoServicioImpl;
 	@EJB
 	@Getter
-	private AreaDaoImpl areaServicioImpl;
+	private AreaDao areaServicioImpl;
 	@EJB
 	@Getter
-	private EspecialidadDaoImpl especialidadServicioImpl;
+	private EspecialidadDao especialidadServicioImpl;
 	@EJB
 	@Getter
-	private OfertaCapacitacionDaoImpl ofertaCapacitacionServicioImpl;
+	private OfertaCapacitacionDao ofertaCapacitacionServicioImpl;
 	
 	@PostConstruct
 	public void init() {

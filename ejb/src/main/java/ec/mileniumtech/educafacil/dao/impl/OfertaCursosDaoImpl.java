@@ -14,7 +14,9 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
 import jakarta.ejb.EJB;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -28,9 +30,8 @@ import lombok.Getter;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
+public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long> implements OfertaCursosDao{
 	public OfertaCursosDaoImpl() {
 		
 	}
@@ -40,16 +41,17 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	}
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaDaoImpl;
+	private MatriculaDao matriculaDao;
 	@EJB
 	@Getter
-	private UsuarioDaoImpl usuarioDaoImpl;
+	private UsuarioDao usuarioDao;
 	/**
 	 * Retorna la lista de cursos disponibles para ser impartidos
 	 * @param ofertaCapacitacion
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCursos> listaCursosDisponibles(int ofertaCapacitacion) throws DaoException{
 		try {
@@ -68,6 +70,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @param ofertaCursos
 	 * @throws DaoException
 	 */
+	@Override
 	public void agregarOfertaCursos(OfertaCursos ofertaCursos) throws DaoException,EntidadDuplicadaException{
 		try {
 			getEntityManager().persist(ofertaCursos);
@@ -91,6 +94,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public OfertaCursos editarOfertaCursos(OfertaCursos ofertaCursos) throws DaoException,EntidadDuplicadaException{
 		try {
 			return getEntityManager().merge(ofertaCursos);
@@ -112,6 +116,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCursos> listaOfertaCursosActivos() throws DaoException{
 		try {
@@ -138,6 +143,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCursos> listaOfertaCursosActivosCerrados() throws DaoException{
 		try {
@@ -157,6 +163,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void finalizarCursoActivo(OfertaCursos ofertaCurso,List<Matricula> matriculas) throws DaoException,EntidadDuplicadaException{
 		try {
 			getEntityManager().merge(ofertaCurso);
@@ -180,6 +187,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCursos> listaOfertaCursosPorDefecto() throws DaoException{
 		try {
@@ -191,6 +199,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCursos> listaOfertaCursosPorCurso(int codigoCurso) throws DaoException{
 		try {
@@ -203,6 +212,7 @@ public class OfertaCursosDaoImpl extends GenericoDaoImpl<OfertaCursos, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public List<OfertaCursos> listaOfertaCursosPorCursoAnio(int codigoCurso,int anio) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCursos.OFERTA_CURSOS_POR_CURSO_ANIO);

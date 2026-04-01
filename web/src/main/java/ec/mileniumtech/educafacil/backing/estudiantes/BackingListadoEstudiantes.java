@@ -35,9 +35,9 @@ import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.estudiantes.BeanListadoEstudiantes;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.impl.CursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
+import ec.mileniumtech.educafacil.dao.CursoDao;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
@@ -73,7 +73,7 @@ public class BackingListadoEstudiantes implements Serializable {
 	private StreamedContent fileDownload;
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	
 	@Inject
 	@Getter
@@ -88,11 +88,11 @@ public class BackingListadoEstudiantes implements Serializable {
 	
 	@EJB
 	@Getter
-	private CursoDaoImpl cursosServicio;
+	private CursoDao cursosServicio;
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicio;
+	private OfertaCursosDao ofertaCursosServicio;
 
 	@EJB
 	@Getter

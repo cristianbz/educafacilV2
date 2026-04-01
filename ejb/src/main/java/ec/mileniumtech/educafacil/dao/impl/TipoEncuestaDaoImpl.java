@@ -12,9 +12,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.TipoEncuesta;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.TipoEncuestaPregunta;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.TipoEncuestaDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -25,9 +24,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long>{
+public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long> implements TipoEncuestaDao{
 	public TipoEncuestaDaoImpl() {
 		
 	}
@@ -35,6 +33,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long>{
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<TipoEncuesta> listaDeTiposDeEncuestas()throws DaoException{
 		try {
@@ -57,6 +56,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public List<TipoEncuesta> listaDeTiposDeEncuestasPorOe(int codigo)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuesta.CARGAR_TIPOS_ENCUESTAS_POR_OE);
@@ -79,6 +79,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public TipoEncuesta actualizarTipoEncuesta(TipoEncuesta tipoEncuesta)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(tipoEncuesta.getTipeId()==null)

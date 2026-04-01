@@ -14,9 +14,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoFlujoDinero;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Egresos;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.EgresoDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -27,9 +26,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> {
+public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements EgresoDao {
 	public EgresoDaoImpl() {
 		
 	}
@@ -43,6 +41,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> {
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarEgreso(Egresos egreso) throws DaoException, EntidadDuplicadaException{
 		try{
 			if (egreso.getEgreId() == null)
@@ -69,6 +68,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> {
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Egresos> listaEgresos()throws DaoException{
 		try {
@@ -81,6 +81,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> {
 		}
 	}
 	
+	@Override
 	public List<Egresos> listaEgresosFechas(Date fechaUno, Date fechaDos)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Egresos.CARGA_EGRESOS_POR_FECHA);
@@ -94,6 +95,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> {
 		}
 	}
 	
+	@Override
 	public List<DtoFlujoDinero> buscaEgresosReporteria(Date fechaInicial, Date fechaFinal)
 			throws DaoException {
 		try {

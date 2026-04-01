@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -41,7 +41,7 @@ public class BackingInscripcion implements Serializable{
 	private MensajesBacking mensajesBacking;
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl; 
+	private OfertaCursosDao ofertaCursosServicioImpl; 
 	
 	@Getter
 	@Setter

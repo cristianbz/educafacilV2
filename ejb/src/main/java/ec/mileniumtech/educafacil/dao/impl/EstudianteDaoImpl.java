@@ -9,7 +9,7 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Estudiante;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Persona;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.EstudianteDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -22,9 +22,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long>{
+public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long> implements EstudianteDao{
 	public EstudianteDaoImpl() {
 		
 	}
@@ -38,6 +37,7 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Estudiante> estudiantesPorApellido(String apellidos) throws DaoException{
 		try {
@@ -56,6 +56,7 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Estudiante estudiantesPorCedula(String cedula) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Estudiante.BUSCA_POR_CEDULA);
@@ -73,6 +74,7 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void actualizaEstudiante(Estudiante estudiante) throws DaoException, EntidadDuplicadaException{
 		try{
 			Persona persona = estudiante.getPersona();

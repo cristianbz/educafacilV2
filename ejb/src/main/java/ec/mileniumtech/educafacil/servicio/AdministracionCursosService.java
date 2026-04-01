@@ -7,9 +7,9 @@ import jakarta.ejb.Stateless;
 
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.EvaluacionCursoDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCapacitacionDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
+import ec.mileniumtech.educafacil.dao.EvaluacionCursoDao;
+import ec.mileniumtech.educafacil.dao.OfertaCapacitacionDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.EvaluacionCurso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Instructor;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCapacitacion;
@@ -23,13 +23,11 @@ import ec.mileniumtech.educafacil.utilitarios.enumeraciones.EnumEstadosOfertaCur
 public class AdministracionCursosService {
 
     @EJB
-    private OfertaCursosDaoImpl ofertaCursosDao;
-
+    private OfertaCursosDao ofertaCursosDao;
     @EJB
-    private OfertaCapacitacionDaoImpl ofertaCapacitacionDao;
-
+    private OfertaCapacitacionDao ofertaCapacitacionDao;
     @EJB
-    private EvaluacionCursoDaoImpl evaluacionCursoDao;
+    private EvaluacionCursoDao evaluacionCursoDao;
 
     /**
      * Prepara el grafo de dominios y graba la Oferta del Curso

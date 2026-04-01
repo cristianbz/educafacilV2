@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pregunta;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.PreguntaDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class PreguntaDaoImpl extends GenericoDaoImpl<Pregunta, Long>{
+public class PreguntaDaoImpl extends GenericoDaoImpl<Pregunta, Long> implements PreguntaDao{
 	public PreguntaDaoImpl() {
 		
 	}
@@ -31,6 +29,7 @@ public class PreguntaDaoImpl extends GenericoDaoImpl<Pregunta, Long>{
 		super(em, entityClass);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Pregunta> listaDePreguntas()throws DaoException{
 		try {
@@ -42,6 +41,7 @@ public class PreguntaDaoImpl extends GenericoDaoImpl<Pregunta, Long>{
 			throw new DaoException(e);
 		}
 	}
+	@Override
 	public Pregunta agregarActualizarPregunta(Pregunta pregunta)throws DaoException,EntidadDuplicadaException {
 		try{
 			if(pregunta.getPregId()==null)
@@ -63,6 +63,7 @@ public class PreguntaDaoImpl extends GenericoDaoImpl<Pregunta, Long>{
 		}	
 	}
 	
+	@Override
 	public List<Pregunta> listaPreguntasPorCategoria(int codigoCategoriaP)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(Pregunta.CARGAR_PREGUNTA_POR_CATEGORIA);

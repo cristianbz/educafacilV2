@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Formacion;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.FormacionDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long>{
+public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long> implements FormacionDao{
 	public FormacionDaoImpl() {
 		
 	}
@@ -37,6 +35,7 @@ public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregaActualizaFormacion(Formacion formacion) throws DaoException, EntidadDuplicadaException{
 		try{
 			if (formacion.getFormId()==0)
@@ -63,6 +62,7 @@ public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Formacion> listaFormaciones(int codigoInstructor) throws DaoException{
 		try {

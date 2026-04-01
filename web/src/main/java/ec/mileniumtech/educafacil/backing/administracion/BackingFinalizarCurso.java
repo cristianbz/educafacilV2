@@ -13,9 +13,9 @@ import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.administracion.BeanFinalizarCurso;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.MatriculaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioDaoImpl;
+import ec.mileniumtech.educafacil.dao.MatriculaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Matricula;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Usuario;
@@ -52,14 +52,14 @@ public class BackingFinalizarCurso  implements Serializable{
 	
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl;
+	private OfertaCursosDao ofertaCursosServicioImpl;
 	
 	@EJB
 	@Getter
-	private MatriculaDaoImpl matriculaServicioImpl;
+	private MatriculaDao matriculaServicioImpl;
 	@EJB
 	@Getter
-	private UsuarioDaoImpl usuarioServicioImpl;
+	private UsuarioDao usuarioServicioImpl;
 	@Getter
 	@Setter
 	private boolean mostrarTextArea;

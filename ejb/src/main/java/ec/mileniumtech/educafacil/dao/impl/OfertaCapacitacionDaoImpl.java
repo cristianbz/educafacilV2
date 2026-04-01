@@ -11,7 +11,7 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Especialidad;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCapacitacion;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.OfertaCapacitacionDao;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -24,9 +24,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacion, Long>{
+public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacion, Long> implements OfertaCapacitacionDao{
 	public OfertaCapacitacionDaoImpl() {
 		
 	}
@@ -42,6 +41,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public OfertaCapacitacion buscarOfertaCapacitacion(int area,int especialidad,int curso) throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.OFERTA_CAPACITACION);
@@ -61,6 +61,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Especialidad> listaEspecialidadPorArea(int area)throws DaoException{
 		try {
@@ -80,6 +81,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Curso> listaCursosPorAreaEspecilidad(int area,int especialidad) throws DaoException{
 		try {
@@ -99,6 +101,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public OfertaCapacitacion buscarPorCurso(int codigoCurso)throws DaoException{
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.BUSCAR_POR_CURSO);
@@ -114,6 +117,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<OfertaCapacitacion> listarOfertasCapacitacion() throws DaoException{
 		try {
@@ -132,6 +136,7 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarOfertaCapacitacion(OfertaCapacitacion ofertaCapacitacion, OfertaCursos ofertaCursos) throws DaoException,EntidadDuplicadaException{
 		try {
 			getEntityManager().persist(ofertaCapacitacion);

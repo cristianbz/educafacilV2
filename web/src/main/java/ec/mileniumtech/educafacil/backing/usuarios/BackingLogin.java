@@ -18,9 +18,9 @@ import org.primefaces.model.menu.MenuModel;
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.impl.ConfiguracionesDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.UsuarioRolDaoImpl;
+import ec.mileniumtech.educafacil.dao.ConfiguracionesDao;
+import ec.mileniumtech.educafacil.dao.UsuarioDao;
+import ec.mileniumtech.educafacil.dao.UsuarioRolDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.dto.ObjetosMenuDto;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Usuario;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.UsuarioRol;
@@ -63,15 +63,15 @@ public class BackingLogin implements Serializable{
 	
 	@EJB
 	@Getter	
-	private UsuarioDaoImpl usuarioServicioImpl;
+	private UsuarioDao usuarioServicioImpl;
 	
 	@EJB
 	@Getter	
-	private UsuarioRolDaoImpl usuarioRolDaoImpl;
+	private UsuarioRolDao usuarioRolDaoImpl;
 	
 	@EJB
 	@Getter	
-	private ConfiguracionesDaoImpl configuracionesServicioImpl;
+	private ConfiguracionesDao configuracionesServicioImpl;
 	
 	@Inject
 	@Getter	

@@ -8,9 +8,8 @@ import java.util.List;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Proveedor;
-import jakarta.ejb.LocalBean;
+import ec.mileniumtech.educafacil.dao.ProveedorDao;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
@@ -21,9 +20,8 @@ import jakarta.validation.ConstraintViolationException;
 *@author christian  Jun 15, 2024
 *
 */
-@LocalBean
 @Stateless
-public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long>{
+public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long> implements ProveedorDao{
 	public ProveedorDaoImpl() {
 		
 	}
@@ -37,6 +35,7 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long>{
 	 * @throws DaoException
 	 * @throws EntidadDuplicadaException
 	 */
+	@Override
 	public void agregarActualizarProveedor(Proveedor proveedor) throws DaoException,EntidadDuplicadaException{
 		try{			
 			if (proveedor.getProvId()==null) {
@@ -62,6 +61,7 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> listaProveedores() throws DaoException{
 		try {
@@ -79,6 +79,7 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long>{
 	 * @return
 	 * @throws DaoException
 	 */
+	@Override
 	public Proveedor validaProveedor(String ruc) throws DaoException{
 		try {
 			Query query = getEntityManager().createNamedQuery(Proveedor.RUC_PROVEEDOR);

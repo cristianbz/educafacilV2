@@ -14,8 +14,8 @@ import org.apache.log4j.Logger;
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.impl.EmpresaDaoImpl;
-import ec.mileniumtech.educafacil.dao.impl.OfertaCursosDaoImpl;
+import ec.mileniumtech.educafacil.dao.EmpresaDao;
+import ec.mileniumtech.educafacil.dao.OfertaCursosDao;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Empresa;
 import ec.mileniumtech.educafacil.utilitario.Mensaje;
 import jakarta.annotation.PostConstruct;
@@ -48,10 +48,10 @@ public class BackingMatricula implements Serializable{
 	private MensajesBacking mensajesBacking;
 	@Getter
 	@EJB
-	private EmpresaDaoImpl empresaServicioImpl; 
+	private EmpresaDao empresaServicioImpl; 
 	@EJB
 	@Getter
-	private OfertaCursosDaoImpl ofertaCursosServicioImpl; 
+	private OfertaCursosDao ofertaCursosServicioImpl; 
 	
 	@PostConstruct
 	public void init() {
