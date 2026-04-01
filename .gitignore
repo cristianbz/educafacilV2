@@ -1,0 +1,4 @@
+/.metadata/
+**/target/
+*.war
+*.ear
