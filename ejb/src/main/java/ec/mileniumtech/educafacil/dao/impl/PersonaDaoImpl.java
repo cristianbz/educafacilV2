@@ -36,10 +36,10 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	 * Consulta datos de la persona por cedula
 	 * @param cedula
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Persona buscarPersonaPorCedula(String cedula)throws DaoException{
+	public Persona buscarPersonaPorCedula(String cedula){
 		try {
 			Persona persona=new Persona();
 			Query query = getEntityManager().createNamedQuery(Persona.BUSCAR_POR_CEDULA);
@@ -58,11 +58,11 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	/**
 	 * Agrega una persona
 	 * @param persona
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarPersona(Persona persona)throws DaoException,EntidadDuplicadaException {
+	public void agregarPersona(Persona persona) {
 		try{
 			getEntityManager().persist(persona);
 			
@@ -83,11 +83,11 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	 * Actualiza la informacion de una persona
 	 * @param persona
 	 * @return
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public Persona actualizarPersona(Persona persona)throws DaoException,EntidadDuplicadaException {
+	public Persona actualizarPersona(Persona persona) {
 		try{
 			if(persona.getPersId()==0)
 				getEntityManager().persist(persona);
@@ -111,11 +111,11 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	 * Devuelve una persona o personas por apellidos
 	 * @param apellidos
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Persona> buscarPersonaPorApellidos(String apellidos)throws DaoException{
+	public List<Persona> buscarPersonaPorApellidos(String apellidos){
 		try {			
 			Query query = getEntityManager().createNamedQuery(Persona.BUSCAR_POR_APELLIDOS);
 			query.setParameter("apellidos", apellidos);
@@ -130,10 +130,10 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	 * Buscar persona por id
 	 * @param codigo
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Persona buscarPersonaPorId(int codigo)throws DaoException{
+	public Persona buscarPersonaPorId(int codigo){
 		try {
 			Persona persona=new Persona();
 			Query query = getEntityManager().createNamedQuery(Persona.BUSCAR_POR_ID);
@@ -154,10 +154,10 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 	 * @param cedula
 	 * @param correo
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Persona buscarPersonaPorCedulaCorreo(String cedula, String correo)throws DaoException{
+	public Persona buscarPersonaPorCedulaCorreo(String cedula, String correo){
 		try {
 			Persona persona=new Persona();
 			Query query = getEntityManager().createNamedQuery(Persona.BUSCAR_POR_CEDULA_CORREO);
@@ -176,3 +176,4 @@ public class PersonaDaoImpl extends GenericoDaoImpl<Persona, Long> implements Pe
 		}
 	} 
 }
+

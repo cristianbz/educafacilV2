@@ -30,11 +30,11 @@ public class EspecialidadDaoImpl extends GenericoDaoImpl<Especialidad, Long> imp
 	/**
 	 * Consulta la lista de especialidades
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Especialidad> listaDeEspecialidades()throws DaoException{
+	public List<Especialidad> listaDeEspecialidades(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Especialidad.LISTA_DE_ESPECIALIDAD);
 			return query.getResultList();
@@ -45,3 +45,4 @@ public class EspecialidadDaoImpl extends GenericoDaoImpl<Especialidad, Long> imp
 		}
 	}
 }
+

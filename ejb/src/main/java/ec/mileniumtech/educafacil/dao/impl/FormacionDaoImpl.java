@@ -32,11 +32,11 @@ public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long> implement
 	/**
 	 * Agrega actualiza una formacion del instructor
 	 * @param formacion
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregaActualizaFormacion(Formacion formacion) throws DaoException, EntidadDuplicadaException{
+	public void agregaActualizaFormacion(Formacion formacion){
 		try{
 			if (formacion.getFormId()==0)
 				getEntityManager().persist(formacion);
@@ -60,11 +60,11 @@ public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long> implement
 	 * Devuelve la lista de formaciones del instructor
 	 * @param codigoInstructor
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Formacion> listaFormaciones(int codigoInstructor) throws DaoException{
+	public List<Formacion> listaFormaciones(int codigoInstructor){
 		try {
 			Query query=getEntityManager().createNamedQuery(Formacion.LISTADO_FORMACIONES);
 			query.setParameter("codigoInstructor", codigoInstructor);
@@ -76,3 +76,4 @@ public class FormacionDaoImpl extends GenericoDaoImpl<Formacion, Long> implement
 		}
 	}
 }
+

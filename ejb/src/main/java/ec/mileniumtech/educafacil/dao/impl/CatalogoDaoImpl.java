@@ -30,11 +30,11 @@ public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long> implements C
 	 * Devuelve los catalogos acorde al tipo
 	 * @param tipoCatalogo
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Catalogo> catalogosPorTipo(String tipoCatalogo) throws DaoException{
+	public List<Catalogo> catalogosPorTipo(String tipoCatalogo){
 		try {
 			Query query=getEntityManager().createNamedQuery(Catalogo.BUSCAR_POR_TIPO_CATALOGO);
 			query.setParameter("tipoCatalogo",tipoCatalogo);
@@ -49,10 +49,10 @@ public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long> implements C
 	 * Busca catalogo por id del padre
 	 * @param padre
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public List<Catalogo> catalogosPorPadre(Catalogo padre) throws DaoException{
+	public List<Catalogo> catalogosPorPadre(Catalogo padre){
 		try {
 			Query query=getEntityManager().createNamedQuery(Catalogo.BUSCAR_POR_PADRE);
 			query.setParameter("padre",padre);
@@ -64,3 +64,4 @@ public class CatalogoDaoImpl extends GenericoDaoImpl<Catalogo,Long> implements C
 		}
 	}
 }
+

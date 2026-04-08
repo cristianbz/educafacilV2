@@ -30,7 +30,7 @@ public class DetalleSeguimientoDaoImpl extends GenericoDaoImpl<DetalleSeguimient
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void agregarDetalle(DetalleSeguimiento detalle) throws DaoException,EntidadDuplicadaException {
+	public void agregarDetalle(DetalleSeguimiento detalle) {
 		try{
 			if (detalle.getDsegId() == 0)
 				getEntityManager().persist(detalle);
@@ -52,7 +52,7 @@ public class DetalleSeguimientoDaoImpl extends GenericoDaoImpl<DetalleSeguimient
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<DetalleSeguimiento> listaDetalle(Integer seguimiento) throws DaoException{
+	public List<DetalleSeguimiento> listaDetalle(Integer seguimiento){
 		try {
 			Query query=getEntityManager().createNamedQuery(DetalleSeguimiento.LISTA_DETALLE);
 			query.setParameter("seguimiento", seguimiento);
@@ -64,3 +64,4 @@ public class DetalleSeguimientoDaoImpl extends GenericoDaoImpl<DetalleSeguimient
 		}
 	}
 }
+

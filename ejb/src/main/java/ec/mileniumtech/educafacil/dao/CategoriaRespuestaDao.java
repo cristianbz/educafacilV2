@@ -6,7 +6,8 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.CategoriaRespuesta;
 
 public interface CategoriaRespuestaDao extends GenericoDao<CategoriaRespuesta, Long> {
-    List<CategoriaRespuesta> listaDeCategorias() throws DaoException;
-    CategoriaRespuesta actualizarCategoriaRespuesta(CategoriaRespuesta categoriaRespuesta) throws DaoException, EntidadDuplicadaException;
-    CategoriaRespuesta buscaCategoria(int codigoCategoria) throws DaoException;
+    List<CategoriaRespuesta> listaDeCategorias();
+    CategoriaRespuesta actualizarCategoriaRespuesta(CategoriaRespuesta categoriaRespuesta);
+    CategoriaRespuesta buscaCategoria(int codigoCategoria);
 }
+

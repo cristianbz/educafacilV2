@@ -32,11 +32,11 @@ public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long> imple
 	/**
 	 * Agrega / Actualiza un seguimiento
 	 * @param seguimiento
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarSeguimiento(Seguimiento seguimiento) throws DaoException,EntidadDuplicadaException{
+	public void agregarActualizarSeguimiento(Seguimiento seguimiento){
 		try{			
 			if (seguimiento.getSegmId()==0) {
 				getEntityManager().persist(seguimiento);
@@ -60,11 +60,11 @@ public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long> imple
 	 * Retorna el seguimiento a un estudiante
 	 * @param matricula
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Seguimiento> listaSeguimientoMatricula(int matricula) throws DaoException{
+	public List<Seguimiento> listaSeguimientoMatricula(int matricula){
 		try {
 			Query query=getEntityManager().createNamedQuery(Seguimiento.BUSCAR_POR_MATRICULA);
 			query.setParameter("matricula", matricula);
@@ -76,3 +76,4 @@ public class SeguimientoDaoImpl extends GenericoDaoImpl<Seguimiento, Long> imple
 		}
 	}
 }
+

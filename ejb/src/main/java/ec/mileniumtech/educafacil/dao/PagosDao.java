@@ -9,7 +9,8 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetallePagos;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Pagos;
 
 public interface PagosDao extends GenericoDao<Pagos, Long> {
-    void agregarPago(Pagos pago) throws DaoException, EntidadDuplicadaException;
-    List<DetallePagos> buscaPagosPorMatricula(int codigoMatricula) throws DaoException;
-    List<DtoFlujoDinero> buscaIngresosReporteria(Date fechaInicial, Date fechaFinal) throws DaoException;
+    void agregarPago(Pagos pago);
+    List<DetallePagos> buscaPagosPorMatricula(int codigoMatricula);
+    List<DtoFlujoDinero> buscaIngresosReporteria(Date fechaInicial, Date fechaFinal);
 }
+

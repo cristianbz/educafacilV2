@@ -69,28 +69,31 @@ public class EducafacilExceptionHandler extends ExceptionHandlerWrapper {
     }
 
     private Throwable findCause(Throwable t) {
-        while (t.getCause() != null && !(t instanceof BusinessException) && !(t instanceof DaoException)) {
-            t = t.getCause();
+        if (t instanceof BusinessException || t instanceof DaoException) {
+            return t;
+        }
+        if (t.getCause() != null && t.getCause() != t) {
+            return findCause(t.getCause());
         }
         return t;
     }
 
     private void handleBusinessException(FacesContext fc, BusinessException be) {
-        String summary = "Error de Negocio";
+        String summary = "Aviso";
         String detail = be.getMessage();
         
-        // Si tiene una clave de mensaje, en el futuro podríamos buscarla en el bundle aquí
+        // Si tiene una clave de mensaje, se podría usar resources bundles aquí.
         Mensaje.verMensaje(FacesMessage.SEVERITY_WARN, summary, detail);
-        log.warn("BusinessException detectada: {}", detail);
+        log.warn("BusinessException: {}", detail);
     }
 
     private void handleDaoException(FacesContext fc, DaoException de) {
-        Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, "Error de Datos", "Ha ocurrido un error en la persistencia de datos.");
-        log.error("DaoException detectada", de);
+        Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, "Error de Persistencia", "Ha ocurrido un error técnico. Por favor, intente más tarde.");
+        log.error("DaoException: ", de);
     }
 
     private void handleGenericException(FacesContext fc, Throwable t) {
-        Mensaje.verMensaje(FacesMessage.SEVERITY_FATAL, "Error Inesperado", "Ha ocurrido un error inesperado en el sistema. Contacte al administrador.");
-        log.error("Error no manejado detectado por el ExceptionHandler global", t);
+        Mensaje.verMensaje(FacesMessage.SEVERITY_FATAL, "Error Crítico", "Error no esperado en el sistema.");
+        log.error("Generic Error: ", t);
     }
 }

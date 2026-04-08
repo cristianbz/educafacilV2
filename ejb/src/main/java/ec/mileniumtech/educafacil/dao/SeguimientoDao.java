@@ -6,6 +6,7 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Seguimiento;
 
 public interface SeguimientoDao extends GenericoDao<Seguimiento, Long> {
-    void agregarActualizarSeguimiento(Seguimiento seguimiento) throws DaoException, EntidadDuplicadaException;
-    List<Seguimiento> listaSeguimientoMatricula(int matricula) throws DaoException;
+    void agregarActualizarSeguimiento(Seguimiento seguimiento);
+    List<Seguimiento> listaSeguimientoMatricula(int matricula);
 }
+

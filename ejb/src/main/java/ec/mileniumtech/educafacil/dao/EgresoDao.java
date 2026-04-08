@@ -8,8 +8,9 @@ import ec.mileniumtech.educafacil.modelo.persistencia.dto.DtoFlujoDinero;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Egresos;
 
 public interface EgresoDao extends GenericoDao<Egresos, Long> {
-    void agregarActualizarEgreso(Egresos egreso) throws DaoException, EntidadDuplicadaException;
-    List<Egresos> listaEgresos() throws DaoException;
-    List<Egresos> listaEgresosFechas(Date fechaUno, Date fechaDos) throws DaoException;
-    List<DtoFlujoDinero> buscaEgresosReporteria(Date fechaInicial, Date fechaFinal) throws DaoException;
+    void agregarActualizarEgreso(Egresos egreso);
+    List<Egresos> listaEgresos();
+    List<Egresos> listaEgresosFechas(Date fechaUno, Date fechaDos);
+    List<DtoFlujoDinero> buscaEgresosReporteria(Date fechaInicial, Date fechaFinal);
 }
+

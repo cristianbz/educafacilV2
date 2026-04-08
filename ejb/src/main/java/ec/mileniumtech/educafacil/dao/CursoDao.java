@@ -5,6 +5,7 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Curso;
 
 public interface CursoDao extends GenericoDao<Curso, Long> {
-    List<Curso> listaCursos() throws DaoException;
-    List<Curso> listaOfertaCursosActivos() throws DaoException;
+    List<Curso> listaCursos();
+    List<Curso> listaOfertaCursosActivos();
 }
+

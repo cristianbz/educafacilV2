@@ -7,10 +7,11 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Campania;
 
 public interface CampaniaDao extends GenericoDao<Campania, Long> {
-    List<Campania> listaCampanias() throws DaoException;
-    List<Campania> listaCampaniasporCurso() throws DaoException;
-    void agregarActualizarCampania(Campania campania) throws DaoException, EntidadDuplicadaException;
-    List<Campania> listaTodasCampanias() throws DaoException;
-    Campania campaniaCurso(int curso) throws DaoException;
-    BigDecimal totalGastoCampanias() throws DaoException;
+    List<Campania> listaCampanias();
+    List<Campania> listaCampaniasporCurso();
+    void agregarActualizarCampania(Campania campania);
+    List<Campania> listaTodasCampanias();
+    Campania campaniaCurso(int curso);
+    BigDecimal totalGastoCampanias();
 }
+

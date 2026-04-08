@@ -34,11 +34,11 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	/**
 	 * Recupera la lista de campanias activas
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Campania> listaCampanias() throws DaoException{
+	public List<Campania> listaCampanias(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIAS_ACTIVAS);			
 			return query.getResultList();
@@ -50,7 +50,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	}
 	
 	@Override
-	public List<Campania> listaCampaniasporCurso() throws DaoException{
+	public List<Campania> listaCampaniasporCurso(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIA_CURSO_ACTIVAS);			
 			return query.getResultList();
@@ -64,11 +64,11 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	/**
 	 * Agrega o actualiza una campania
 	 * @param campania
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarCampania(Campania campania) throws DaoException, EntidadDuplicadaException{
+	public void agregarActualizarCampania(Campania campania){
 		try{
 			if (campania.getCampId() == null)
 				getEntityManager().persist(campania);
@@ -91,11 +91,11 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	/**
 	 * Lista todas las campanias existentes
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Campania> listaTodasCampanias() throws DaoException{
+	public List<Campania> listaTodasCampanias(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIAS_TODAS);			
 			return query.getResultList();
@@ -107,7 +107,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	}
 	
 	@Override
-	public Campania campaniaCurso(int curso) throws DaoException{
+	public Campania campaniaCurso(int curso){
 		try {
 			Query query=getEntityManager().createNamedQuery(Campania.CAMPANIA_CURSO);	
 			query.setParameter("curso", curso);
@@ -122,7 +122,7 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public BigDecimal totalGastoCampanias() throws DaoException{
+	public BigDecimal totalGastoCampanias(){
 		List<Object[]> resultado= null;
 		BigDecimal valor= new BigDecimal(0);		
 		String sql ="SELECT SUM(camp_costo) FROM cap.campania;";
@@ -138,3 +138,4 @@ public class CampaniaDaoImpl extends GenericoDaoImpl<Campania,Long> implements C
 		return valor;
 	}
 }
+

@@ -33,11 +33,11 @@ public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long> implements Em
 	/**
 	 * Devuelve la lista de empresas activas
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Empresa> listaEmpresas() throws DaoException{
+	public List<Empresa> listaEmpresas(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Empresa.EMPRESAS_ACTIVAS);
 			return query.getResultList();
@@ -50,11 +50,11 @@ public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long> implements Em
 	/**
 	 * Agrega o actualiza una empresa
 	 * @param empresa
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarEmpresa(Empresa empresa) throws DaoException,EntidadDuplicadaException {
+	public void agregarEmpresa(Empresa empresa) {
 		try{
 			if (empresa.getEmprId()==0)
 				getEntityManager().persist(empresa);
@@ -75,3 +75,4 @@ public class EmpresaDaoImpl extends GenericoDaoImpl<Empresa, Long> implements Em
 	}
 
 }
+

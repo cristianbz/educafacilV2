@@ -38,11 +38,11 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements Egr
 	/**
 	 * Agrega / actualiza un egreso
 	 * @param egreso
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarEgreso(Egresos egreso) throws DaoException, EntidadDuplicadaException{
+	public void agregarActualizarEgreso(Egresos egreso){
 		try{
 			if (egreso.getEgreId() == null)
 				getEntityManager().persist(egreso);
@@ -66,11 +66,11 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements Egr
 	/**
 	 * Carga los egresos del dia
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Egresos> listaEgresos()throws DaoException{
+	public List<Egresos> listaEgresos(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Egresos.CARGA_EGRESOS);
 			return query.getResultList();
@@ -82,7 +82,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements Egr
 	}
 	
 	@Override
-	public List<Egresos> listaEgresosFechas(Date fechaUno, Date fechaDos)throws DaoException{
+	public List<Egresos> listaEgresosFechas(Date fechaUno, Date fechaDos){
 		try {
 			Query query=getEntityManager().createNamedQuery(Egresos.CARGA_EGRESOS_POR_FECHA);
 			query.setParameter("fechauno", fechaUno);
@@ -97,7 +97,7 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements Egr
 	
 	@Override
 	public List<DtoFlujoDinero> buscaEgresosReporteria(Date fechaInicial, Date fechaFinal)
-			throws DaoException {
+			 {
 		try {
 			DateFormat formatoFecha = new SimpleDateFormat ("yyyy-MM-dd");
 			SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd",new Locale("es","ES"));
@@ -132,3 +132,4 @@ public class EgresoDaoImpl extends GenericoDaoImpl<Egresos, Long> implements Egr
 		}
 	}
 }
+

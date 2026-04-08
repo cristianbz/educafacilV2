@@ -6,6 +6,6 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Instructor;
 
 public interface InstructorDao extends GenericoDao<Instructor, Long> {
-    List<Instructor> listaInstructores() throws DaoException;
-    void agregarActualizarInstructor(Instructor instructor) throws DaoException, EntidadDuplicadaException;
+    List<Instructor> listaInstructores();
+    void agregarActualizarInstructor(Instructor instructor);
 }

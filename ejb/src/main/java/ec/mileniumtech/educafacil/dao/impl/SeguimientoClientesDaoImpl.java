@@ -39,11 +39,11 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * Agrega un nuevo seguimiento a cliente
 	 * @param seguimiento
 	 * @param detalle
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarSeguimiento(SeguimientoClientes seguimiento, List<DetalleSeguimiento> detalle)throws DaoException,EntidadDuplicadaException {
+	public void agregarSeguimiento(SeguimientoClientes seguimiento, List<DetalleSeguimiento> detalle) {
 		try{
 			if(seguimiento.getSegcId() == null) {
 				getEntityManager().persist(seguimiento);
@@ -77,7 +77,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<SeguimientoClientes> listaSeguimiento() throws DaoException{
+	public List<SeguimientoClientes> listaSeguimiento(){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO);
 			return query.getResultList();
@@ -90,7 +90,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	
 //	LISTA_SEGUIMIENTO_ESTADO
 	@Override
-	public List<SeguimientoClientes> listaSeguimientoVendedorAsignado() throws DaoException{
+	public List<SeguimientoClientes> listaSeguimientoVendedorAsignado(){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_VENDEDOR_ASIGNADO);
 			return query.getResultList();
@@ -102,7 +102,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	}	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<SeguimientoClientes> listaSeguimientoCampania(Integer campania) throws DaoException{
+	public List<SeguimientoClientes> listaSeguimientoCampania(Integer campania){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_CAMPANIA);
 			query.setParameter("campania", campania);
@@ -117,10 +117,10 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * Consulta en base a la campaña los clientes que no tienen asignado un vendedor
 	 * @param campaniaS
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public List<SeguimientoClientes> listaSeguimientoCampaniaVendedor(Integer campaniaS) throws DaoException{
+	public List<SeguimientoClientes> listaSeguimientoCampaniaVendedor(Integer campaniaS){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_VENDEDOR);
 			query.setParameter("campaniaS", campaniaS);
@@ -135,10 +135,10 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * Alcance de la campania
 	 * @param campania
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public BigInteger alcanceCampania(int campania)throws DaoException {
+	public BigInteger alcanceCampania(int campania) {
 		try {
 			BigInteger alcance = null;
 			String queryString;
@@ -154,7 +154,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	}
 	
 	@Override
-	public BigInteger prospectosCampania(int campania, String estado)throws DaoException {
+	public BigInteger prospectosCampania(int campania, String estado) {
 		try {
 			BigInteger alcance = null;
 			String queryString;
@@ -168,7 +168,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}
 	}
 	@Override
-	public List<SeguimientoClientes> listaSeguimientoCampaniaCurso(Integer curso) throws DaoException{
+	public List<SeguimientoClientes> listaSeguimientoCampaniaCurso(Integer curso){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_CURSO);
 			query.setParameter("curso", curso);
@@ -180,7 +180,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		}
 	}
 	@Override
-	public List<SeguimientoClientes> listaSeguimientoCampaniaFechas(Date inicio, Date fin) throws DaoException{
+	public List<SeguimientoClientes> listaSeguimientoCampaniaFechas(Date inicio, Date fin){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.LISTA_SEGUIMIENTO_FECHAS);
 			query.setParameter("fechaInicio", inicio);
@@ -194,7 +194,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	}
 	
 	@Override
-	public void actualizarSeguimiento(SeguimientoClientes seguimiento) throws DaoException,EntidadDuplicadaException{
+	public void actualizarSeguimiento(SeguimientoClientes seguimiento){
 		try{
 			if(seguimiento.getSegcId() != null) 			
 				getEntityManager().merge(seguimiento);				
@@ -217,10 +217,10 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 * Busca informacion del seguimiento cliente por el id
 	 * @param id
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public SeguimientoClientes seguimiento(int id)throws DaoException{
+	public SeguimientoClientes seguimiento(int id){
 		try {			
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.BUSCA_SEGUIMIENTO);
 			query.setParameter("id", id);								
@@ -233,7 +233,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	}
 	
 	@Override
-	public SeguimientoClientes validaNumero(String telefono, int curso, int campania) throws DaoException{
+	public SeguimientoClientes validaNumero(String telefono, int curso, int campania){
 		try {			
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.VALIDA_NUMERO);
 			query.setParameter("telefono", telefono);
@@ -249,10 +249,10 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	/**
 	 * Busca la proxima llamada
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public List<SeguimientoClientes> listaPendientesLlamada() throws DaoException{
+	public List<SeguimientoClientes> listaPendientesLlamada(){
 		try {
 			Query query=getEntityManager().createNamedQuery(SeguimientoClientes.PENDIENTE_LLAMADAS);
 			query.setParameter("proximallamada", new Date());			
@@ -271,7 +271,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public BigDecimal totalDatosCRM(String estado) throws DaoException{
+	public BigDecimal totalDatosCRM(String estado){
 		List<Object[]> resultado= null;
 		BigDecimal valor= new BigDecimal(0);		
 		String sql ="SELECT COUNT(segc_id) FROM cap.seguimientoclientes WHERE segc_estado = '" + estado +"'";
@@ -289,7 +289,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public BigDecimal totalDatosCRMVendedor(String estado, Integer vendedor, Integer campania) throws DaoException{
+	public BigDecimal totalDatosCRMVendedor(String estado, Integer vendedor, Integer campania){
 		List<Object[]> resultado= null;
 		BigDecimal valor= new BigDecimal(0);		
 		String sql ="SELECT COUNT(segc_id) FROM cap.seguimientoclientes WHERE segc_estado = '" + estado +"'"
@@ -308,11 +308,11 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	/**
 	 * Consulta los interesados por curso del CRM
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<DtoMatriculasCurso> listaInteresadosCursoCRM() throws DaoException{
+	public List<DtoMatriculasCurso> listaInteresadosCursoCRM(){
 		List<Object[]> resultado= null;
 		List<DtoMatriculasCurso> listaResultado = new ArrayList<DtoMatriculasCurso>();
 		String sql ="SELECT COUNT(segc_id) as cantidad,cu.curs_nombre  FROM cap.seguimientoclientes sc, cap.curso cu " +
@@ -335,7 +335,7 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<DtoMatriculasCurso> listaEstadosContactoCursoCRM(String estado) throws DaoException{
+	public List<DtoMatriculasCurso> listaEstadosContactoCursoCRM(String estado){
 		List<Object[]> resultado= null;
 		List<DtoMatriculasCurso> listaResultado = new ArrayList<DtoMatriculasCurso>();
 		String sql ="SELECT COUNT(segc_id) as cantidad,cu.curs_nombre  FROM cap.seguimientoclientes sc, cap.curso cu "+
@@ -357,3 +357,4 @@ public class SeguimientoClientesDaoImpl extends GenericoDaoImpl<SeguimientoClien
 		return listaResultado;
 	}
 }
+

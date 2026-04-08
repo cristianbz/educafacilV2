@@ -36,10 +36,10 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	 * Actualiza el usuario
 	 * @param usuario
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Usuario actualizaUsuario(Usuario usuario) throws DaoException{
+	public Usuario actualizaUsuario(Usuario usuario){
 		Usuario user=null;
 		try {
 			user =  getEntityManager().merge(usuario);
@@ -50,7 +50,7 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	}
 	
 	@Override
-	public Usuario agregarUsuario(Usuario usuario)throws DaoException,EntidadDuplicadaException {
+	public Usuario agregarUsuario(Usuario usuario) {
 	try{
 		if(usuario.getUsuaId()==null) 
 			getEntityManager().persist(usuario);
@@ -75,10 +75,10 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	 * Consulta un usuario por usuario 
 	 * @param usuario
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Usuario consultarUsuario(String usuario) throws DaoException{
+	public Usuario consultarUsuario(String usuario){
 		try {
 			Query query = getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO_POR_USUARIO);
 			query.setParameter("usuario", usuario);
@@ -93,12 +93,12 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	 * Busca las opciones de menu del usuario
 	 * @param correo
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ObjetosMenuDto> buscarAccesosUsuario(String correo)
-			throws DaoException {
+			 {
 		try {
 			
 			List <ObjetosMenuDto> listaAccesosUsuario = new ArrayList<ObjetosMenuDto>();
@@ -159,10 +159,10 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	 * Consulta un usuario por documento de identidad
 	 * @param documento
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Usuario consultarUsuarioPorDocumento(String documento) throws DaoException{
+	public Usuario consultarUsuarioPorDocumento(String documento){
 		try {
 			Query query = getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO_POR_NRO_IDENTIFICACION);
 			query.setParameter("nrodocumento", documento);
@@ -177,11 +177,11 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 	 * Devuelve los usuarios por rol
 	 * @param idRol
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Usuario> consultarUsuariosPorIdRol(int idRol)throws DaoException {
+	public List<Usuario> consultarUsuariosPorIdRol(int idRol) {
 		try {
 			String queryString;
 			queryString = " SELECT DISTINCT usuario.usua_id, persona.pers_nombres,persona.pers_apellidos " + 
@@ -213,3 +213,4 @@ public class UsuarioDaoImpl extends GenericoDaoImpl<Usuario, Long> implements Us
 		}
 	}
 }
+

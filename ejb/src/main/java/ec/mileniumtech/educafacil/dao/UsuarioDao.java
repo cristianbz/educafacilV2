@@ -7,10 +7,11 @@ import ec.mileniumtech.educafacil.modelo.persistencia.dto.ObjetosMenuDto;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Usuario;
 
 public interface UsuarioDao extends GenericoDao<Usuario, Long> {
-    Usuario actualizaUsuario(Usuario usuario) throws DaoException;
-    Usuario agregarUsuario(Usuario usuario) throws DaoException, EntidadDuplicadaException;
-    Usuario consultarUsuario(String usuario) throws DaoException;
-    List<ObjetosMenuDto> buscarAccesosUsuario(String correo) throws DaoException;
-    Usuario consultarUsuarioPorDocumento(String documento) throws DaoException;
-    List<Usuario> consultarUsuariosPorIdRol(int idRol) throws DaoException;
+    Usuario actualizaUsuario(Usuario usuario);
+    Usuario agregarUsuario(Usuario usuario);
+    Usuario consultarUsuario(String usuario);
+    List<ObjetosMenuDto> buscarAccesosUsuario(String correo);
+    Usuario consultarUsuarioPorDocumento(String documento);
+    List<Usuario> consultarUsuariosPorIdRol(int idRol);
 }
+

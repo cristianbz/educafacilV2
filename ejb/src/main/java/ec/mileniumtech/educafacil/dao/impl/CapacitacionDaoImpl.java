@@ -32,11 +32,11 @@ public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long> impl
 	/**
 	 * Agrega una capacitacion
 	 * @param capacitacion
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarCapacitacion(Capacitacion capacitacion) throws DaoException, EntidadDuplicadaException{
+	public void agregarActualizarCapacitacion(Capacitacion capacitacion){
 		try{
 			if (capacitacion.getCapaId()==0)
 				getEntityManager().persist(capacitacion);
@@ -60,11 +60,11 @@ public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long> impl
 	 * Devuelve la lista de capacitaciones seguidas por el instructor
 	 * @param codigoInstructor
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Capacitacion> listaCapacitaciones(int codigoInstructor) throws DaoException{
+	public List<Capacitacion> listaCapacitaciones(int codigoInstructor){
 		try {
 			Query query=getEntityManager().createNamedQuery(Capacitacion.LISTADO_CAPACITACIONES);
 			query.setParameter("codigoInstructor", codigoInstructor);
@@ -76,3 +76,4 @@ public class CapacitacionDaoImpl extends GenericoDaoImpl<Capacitacion,Long> impl
 		}
 	}
 }
+

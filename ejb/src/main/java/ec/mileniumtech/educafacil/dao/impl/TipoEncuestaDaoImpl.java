@@ -35,7 +35,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long> imp
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<TipoEncuesta> listaDeTiposDeEncuestas()throws DaoException{
+	public List<TipoEncuesta> listaDeTiposDeEncuestas(){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuesta.CARGAR_TIPOS_ENCUESTAS);
 			for(Object objeto:query.getResultList()) {
@@ -57,7 +57,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long> imp
 		}
 	}
 	@Override
-	public List<TipoEncuesta> listaDeTiposDeEncuestasPorOe(int codigo)throws DaoException{
+	public List<TipoEncuesta> listaDeTiposDeEncuestasPorOe(int codigo){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuesta.CARGAR_TIPOS_ENCUESTAS_POR_OE);
 			query.setParameter("codigo", codigo);
@@ -80,7 +80,7 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long> imp
 		}
 	}
 	@Override
-	public TipoEncuesta actualizarTipoEncuesta(TipoEncuesta tipoEncuesta)throws DaoException,EntidadDuplicadaException {
+	public TipoEncuesta actualizarTipoEncuesta(TipoEncuesta tipoEncuesta) {
 		try{
 			if(tipoEncuesta.getTipeId()==null)
 				getEntityManager().persist(tipoEncuesta);
@@ -101,3 +101,4 @@ public class TipoEncuestaDaoImpl extends GenericoDaoImpl<TipoEncuesta, Long> imp
 		}	
 	}
 }
+

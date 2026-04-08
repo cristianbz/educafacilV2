@@ -5,5 +5,5 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.Vendedor;
 
 public interface VendedorDao extends GenericoDao<Vendedor, Long> {
-    List<Vendedor> listaDeVendedores() throws DaoException;
+    List<Vendedor> listaDeVendedores();
 }

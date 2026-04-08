@@ -24,11 +24,11 @@ public class AreaDaoImpl extends GenericoDaoImpl<Area,Long> implements AreaDao {
 	/**
 	 * Consulta la lista de areas
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Area> listaDeAreas()throws DaoException{
+	public List<Area> listaDeAreas(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Area.LISTA_DE_AREAS);
 			return query.getResultList();
@@ -39,4 +39,5 @@ public class AreaDaoImpl extends GenericoDaoImpl<Area,Long> implements AreaDao {
 		}
 	}
 }
+
 

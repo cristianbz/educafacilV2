@@ -30,11 +30,11 @@ public class ConfiguracionesDaoImpl extends GenericoDaoImpl<Configuraciones,Long
 	/**
 	 * Retorna la lista de configuraciones
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Configuraciones> listaConfiguraciones()throws DaoException{
+	public List<Configuraciones> listaConfiguraciones(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Configuraciones.LISTA_CONFIGURACIONES);
 			return query.getResultList();
@@ -46,3 +46,4 @@ public class ConfiguracionesDaoImpl extends GenericoDaoImpl<Configuraciones,Long
 	}
 
 }
+

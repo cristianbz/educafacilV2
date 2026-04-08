@@ -9,10 +9,11 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCapacitacion;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.OfertaCursos;
 
 public interface OfertaCapacitacionDao extends GenericoDao<OfertaCapacitacion, Long> {
-    OfertaCapacitacion buscarOfertaCapacitacion(int area, int especialidad, int curso) throws DaoException;
-    List<Especialidad> listaEspecialidadPorArea(int area) throws DaoException;
-    List<Curso> listaCursosPorAreaEspecilidad(int area, int especialidad) throws DaoException;
-    OfertaCapacitacion buscarPorCurso(int codigoCurso) throws DaoException;
-    List<OfertaCapacitacion> listarOfertasCapacitacion() throws DaoException;
-    void agregarOfertaCapacitacion(OfertaCapacitacion ofertaCapacitacion, OfertaCursos ofertaCursos) throws DaoException, EntidadDuplicadaException;
+    OfertaCapacitacion buscarOfertaCapacitacion(int area, int especialidad, int curso);
+    List<Especialidad> listaEspecialidadPorArea(int area);
+    List<Curso> listaCursosPorAreaEspecilidad(int area, int especialidad);
+    OfertaCapacitacion buscarPorCurso(int codigoCurso);
+    List<OfertaCapacitacion> listarOfertasCapacitacion();
+    void agregarOfertaCapacitacion(OfertaCapacitacion ofertaCapacitacion, OfertaCursos ofertaCursos);
 }
+

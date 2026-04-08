@@ -31,7 +31,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long> impleme
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<UsuarioRol> listaDeUsuarioRol()throws DaoException{
+	public List<UsuarioRol> listaDeUsuarioRol(){
 		try {
 			Query query=getEntityManager().createNamedQuery(UsuarioRol.CARGAR_Usuario_Rol);
 			return query.getResultList();
@@ -43,7 +43,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long> impleme
 	}
 	
 	@Override
-	public List<UsuarioRol> listaUsuarioRolPorUsuario(int idUsuario)throws DaoException{
+	public List<UsuarioRol> listaUsuarioRolPorUsuario(int idUsuario){
 		try {
 			Query query=getEntityManager().createNamedQuery(UsuarioRol.CARGAR_Usuario_Rol_Por_IDUsuario);
 			query.setParameter("idUsuario", idUsuario);
@@ -56,7 +56,7 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long> impleme
 	}
 	
 	@Override
-	public UsuarioRol agregarUsuarioRol(UsuarioRol usuarioRol)throws DaoException,EntidadDuplicadaException {
+	public UsuarioRol agregarUsuarioRol(UsuarioRol usuarioRol) {
 		try{
 			if(usuarioRol.getUrolId()==null) 
 				getEntityManager().persist(usuarioRol);
@@ -77,3 +77,4 @@ public class UsuarioRolDaoImpl extends GenericoDaoImpl<UsuarioRol, Long> impleme
 		}	
 	}
 }
+

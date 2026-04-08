@@ -28,7 +28,7 @@ public class VendedorDaoImpl extends GenericoDaoImpl<Vendedor,Long> implements V
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Vendedor> listaDeVendedores()throws DaoException{
+	public List<Vendedor> listaDeVendedores(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Vendedor.BUSCAR_VENDEDOR);
 			return query.getResultList();
@@ -39,3 +39,4 @@ public class VendedorDaoImpl extends GenericoDaoImpl<Vendedor,Long> implements V
 		}
 	}
 }
+

@@ -11,9 +11,7 @@ import org.apache.log4j.Logger;
 
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.administracion.BeanAdminCursos;
-import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
-import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
-import ec.mileniumtech.educafacil.dao.excepciones.OfertaCursosException;
+import ec.mileniumtech.educafacil.dao.excepciones.BusinessException;
 import ec.mileniumtech.educafacil.dao.AreaDao;
 import ec.mileniumtech.educafacil.dao.CatalogoDao;
 import ec.mileniumtech.educafacil.dao.EvaluacionCursoDao;
@@ -141,80 +139,50 @@ public class BackingAdminCursos implements Serializable{
 	 * Carga la oferta de cursos activos
 	 */
 	public void cargarOfertaCursosActivos() {
-		try {
-			getBeanAdminCursos().setListaOfertaCursos(new ArrayList<>());
-			getBeanAdminCursos().setListaOfertaCursos(getOfertaCursosServicioImpl().listaOfertaCursosActivos());
-			getBeanAdminCursos().setListaOfertaCursos(getBeanAdminCursos().getListaOfertaCursos().stream().sorted((a1,a2) -> a1.getOfertaCapacitacion().getArea().getAreaNombre().compareTo(a2.getOfertaCapacitacion().getArea().getAreaNombre())).collect(Collectors.toList()));		
-		} catch (DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.cargarcursos"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargarOfertaCursosActivos" + ": ").append(e.getMessage()));
-		}
+		getBeanAdminCursos().setListaOfertaCursos(new ArrayList<>());
+		getBeanAdminCursos().setListaOfertaCursos(getOfertaCursosServicioImpl().listaOfertaCursosActivos());
+		getBeanAdminCursos().setListaOfertaCursos(getBeanAdminCursos().getListaOfertaCursos().stream().sorted((a1,a2) -> a1.getOfertaCapacitacion().getArea().getAreaNombre().compareTo(a2.getOfertaCapacitacion().getArea().getAreaNombre())).collect(Collectors.toList()));		
 	}
 	/**
 	 * Carga las areas
 	 */
 	public void cargarArea() {
-		try {
-			getBeanAdminCursos().setListaAreas(new ArrayList<>());
-			getBeanAdminCursos().setListaAreas(getAreaServicioImpl().listaDeAreas());
-			getBeanAdminCursos().setListaAreas(getBeanAdminCursos().getListaAreas().stream().sorted((a1,a2)->a1.getAreaNombre().compareTo(a2.getAreaNombre())).collect(Collectors.toList()));
-		}catch(DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.cargarmodalidad"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargarModalidad" + ": ").append(e.getMessage()));
-		}
+		getBeanAdminCursos().setListaAreas(new ArrayList<>());
+		getBeanAdminCursos().setListaAreas(getAreaServicioImpl().listaDeAreas());
+		getBeanAdminCursos().setListaAreas(getBeanAdminCursos().getListaAreas().stream().sorted((a1,a2)->a1.getAreaNombre().compareTo(a2.getAreaNombre())).collect(Collectors.toList()));
 	}
 	/**
 	 * Carga las Especialidades
 	 */
 	public void cargaEspecialidades() {
-		try {
-			getBeanAdminCursos().setListaEspecialidad(new ArrayList<>());
-			getBeanAdminCursos().setListaCurso(new ArrayList<>());
-			getBeanAdminCursos().setListaEspecialidad(getOfertaCapacitacionServicioImpl().listaEspecialidadPorArea(getBeanAdminCursos().getCodigoArea()));
-			getBeanAdminCursos().setListaEspecialidad(getBeanAdminCursos().getListaEspecialidad().stream().sorted((e1,e2)->e1.getEspeNombre().compareTo(e2.getEspeNombre())).collect(Collectors.toList()));
-		}catch(DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.cargarespecialidad"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargarEspecialidades" + ": ").append(e.getMessage()));
-		}		
+		getBeanAdminCursos().setListaEspecialidad(new ArrayList<>());
+		getBeanAdminCursos().setListaCurso(new ArrayList<>());
+		getBeanAdminCursos().setListaEspecialidad(getOfertaCapacitacionServicioImpl().listaEspecialidadPorArea(getBeanAdminCursos().getCodigoArea()));
+		getBeanAdminCursos().setListaEspecialidad(getBeanAdminCursos().getListaEspecialidad().stream().sorted((e1,e2)->e1.getEspeNombre().compareTo(e2.getEspeNombre())).collect(Collectors.toList()));
 	}
 	/**
 	 * Carga la lista de instructores
 	 */
 	public void cargarInstructor() {
-		try {
-			getBeanAdminCursos().setListaInstructores(new ArrayList<>());
-			getBeanAdminCursos().setListaInstructores(getInstructorServicioImpl().listaInstructores());
-			getBeanAdminCursos().setListaInstructores(getBeanAdminCursos().getListaInstructores().stream().sorted((i1,i2)->i1.getPersona().getPersApellidos().compareTo(i2.getPersona().getPersApellidos())).collect(Collectors.toList()));
-		}catch(DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.error.cargarInstructor"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargarInstructor" + ": ").append(e.getMessage()));
-		}
+		getBeanAdminCursos().setListaInstructores(new ArrayList<>());
+		getBeanAdminCursos().setListaInstructores(getInstructorServicioImpl().listaInstructores());
+		getBeanAdminCursos().setListaInstructores(getBeanAdminCursos().getListaInstructores().stream().sorted((i1,i2)->i1.getPersona().getPersApellidos().compareTo(i2.getPersona().getPersApellidos())).collect(Collectors.toList()));
 	}
 	/**
 	 * Carga los cursos
 	 */
 	public void cargarCursos() {
-		try {
-			getBeanAdminCursos().setListaCurso(new ArrayList<>());
-			getBeanAdminCursos().setListaCurso(getOfertaCapacitacionServicioImpl().listaCursosPorAreaEspecilidad(getBeanAdminCursos().getCodigoArea(), getBeanAdminCursos().getCodigoEspecialidad()));
-			getBeanAdminCursos().setListaCurso(getBeanAdminCursos().getListaCurso().stream().sorted((c1,c2)->c1.getCursNombre().compareTo(c2.getCursNombre())).collect(Collectors.toList()));
-		}catch(DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.cargarcursos"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargarCursos" + ": ").append(e.getMessage()));
-		}
+		getBeanAdminCursos().setListaCurso(new ArrayList<>());
+		getBeanAdminCursos().setListaCurso(getOfertaCapacitacionServicioImpl().listaCursosPorAreaEspecilidad(getBeanAdminCursos().getCodigoArea(), getBeanAdminCursos().getCodigoEspecialidad()));
+		getBeanAdminCursos().setListaCurso(getBeanAdminCursos().getListaCurso().stream().sorted((c1,c2)->c1.getCursNombre().compareTo(c2.getCursNombre())).collect(Collectors.toList()));
 	}
 	/**
 	 * Carga los tipos de capacitacion
 	 */
 	public void cargaTipoCapacitacion() {
-		try {
-			getBeanAdminCursos().setListaCatalogo(new ArrayList<>());
-			getBeanAdminCursos().setListaCatalogo(getCatalogoServicioImpl().catalogosPorTipo(EnumTipoCatalogo.TIPOCAPACITACION.getNemotecnico()));
-			getBeanAdminCursos().setListaCatalogo(getBeanAdminCursos().getListaCatalogo().stream().sorted((t1,t2)->t1.getCataDescripcion().compareTo(t2.getCataDescripcion())).collect(Collectors.toList()));
-		}catch(DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.catalogo"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "cargaTipoCapacitacion" + ": ").append(e.getMessage()));
-		}
+		getBeanAdminCursos().setListaCatalogo(new ArrayList<>());
+		getBeanAdminCursos().setListaCatalogo(getCatalogoServicioImpl().catalogosPorTipo(EnumTipoCatalogo.TIPOCAPACITACION.getNemotecnico()));
+		getBeanAdminCursos().setListaCatalogo(getBeanAdminCursos().getListaCatalogo().stream().sorted((t1,t2)->t1.getCataDescripcion().compareTo(t2.getCataDescripcion())).collect(Collectors.toList()));
 	}
 	/**
 	 * Permite editar una oferta de curso
@@ -238,29 +206,21 @@ public class BackingAdminCursos implements Serializable{
 	 * Graba una oferta de curso
 	 */
 	public void grabarCurso() {
-		try {
-            getAdministracionCursosService().grabarCurso(
-                getBeanAdminCursos().getOfertaCursos(),
-                getBeanAdminCursos().getCodigoArea(),
-                getBeanAdminCursos().getCodigoEspecialidad(),
-                getBeanAdminCursos().getCodigoCurso(),
-                getBeanAdminCursos().getCodigoInstructor(),
-                getBeanAdminCursos().getCodigoTipoCurso(),
-                getBeanAdminCursos().isAnularCurso()
-            );
+		getAdministracionCursosService().grabarCurso(
+			getBeanAdminCursos().getOfertaCursos(),
+			getBeanAdminCursos().getCodigoArea(),
+			getBeanAdminCursos().getCodigoEspecialidad(),
+			getBeanAdminCursos().getCodigoCurso(),
+			getBeanAdminCursos().getCodigoInstructor(),
+			getBeanAdminCursos().getCodigoTipoCurso(),
+			getBeanAdminCursos().isAnularCurso()
+		);
 
-			getBeanAdminCursos().setEditarOfertaCurso(false);
-			getBeanAdminCursos().setOfertaCursos(new OfertaCursos());
-			cargarOfertaCursosActivos();
-			Mensaje.ocultarDialogo("dlgOfertaCursos");
-			Mensaje.verMensaje(FacesMessage.SEVERITY_INFO, getMensajesBacking().getPropiedad("info"), getMensajesBacking().getPropiedad("info.agregar"));	
-		} catch (DaoException e) {
-			e.printStackTrace();
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.cargarOfertaCapacitacion"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "grabarCurso" + ": ").append(e.getMessage()));
-		} catch (EntidadDuplicadaException e) {
-			e.printStackTrace();
-		}
+		getBeanAdminCursos().setEditarOfertaCurso(false);
+		getBeanAdminCursos().setOfertaCursos(new OfertaCursos());
+		cargarOfertaCursosActivos();
+		Mensaje.ocultarDialogo("dlgOfertaCursos");
+		Mensaje.verMensaje(FacesMessage.SEVERITY_INFO, getMensajesBacking().getPropiedad("info"), getMensajesBacking().getPropiedad("info.agregar"));	
 	}
 	
 	/**

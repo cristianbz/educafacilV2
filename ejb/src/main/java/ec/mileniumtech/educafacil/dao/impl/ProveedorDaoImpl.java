@@ -32,11 +32,11 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long> implement
 	/**
 	 * Agrega actualiza un proveedor
 	 * @param proveedor
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarProveedor(Proveedor proveedor) throws DaoException,EntidadDuplicadaException{
+	public void agregarActualizarProveedor(Proveedor proveedor){
 		try{			
 			if (proveedor.getProvId()==null) {
 				getEntityManager().persist(proveedor);
@@ -59,11 +59,11 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long> implement
 	/**
 	 * Devuelve la lista de proveedores
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Proveedor> listaProveedores() throws DaoException{
+	public List<Proveedor> listaProveedores(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Proveedor.LISTA_PROVEEDORES);
 			return query.getResultList();
@@ -77,10 +77,10 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long> implement
 	 * Valida el proveedor
 	 * @param ruc
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Proveedor validaProveedor(String ruc) throws DaoException{
+	public Proveedor validaProveedor(String ruc){
 		try {
 			Query query = getEntityManager().createNamedQuery(Proveedor.RUC_PROVEEDOR);
 			query.setParameter("ruc", ruc);
@@ -92,3 +92,4 @@ public class ProveedorDaoImpl extends GenericoDaoImpl<Proveedor, Long> implement
 		}
 	}
 }
+

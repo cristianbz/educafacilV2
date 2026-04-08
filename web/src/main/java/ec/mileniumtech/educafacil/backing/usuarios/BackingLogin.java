@@ -17,7 +17,7 @@ import org.primefaces.model.menu.MenuModel;
 
 import ec.mileniumtech.educafacil.backing.MensajesBacking;
 import ec.mileniumtech.educafacil.bean.usuarios.BeanLogin;
-import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
+import ec.mileniumtech.educafacil.dao.excepciones.BusinessException;
 import ec.mileniumtech.educafacil.dao.ConfiguracionesDao;
 import ec.mileniumtech.educafacil.dao.UsuarioDao;
 import ec.mileniumtech.educafacil.dao.UsuarioRolDao;
@@ -93,82 +93,77 @@ public class BackingLogin implements Serializable{
 		String respuesta=null;
 		listaMenuUsuario= new ArrayList<>();
 		this.menumodel=new DefaultMenuModel();
-		try {			
-			if(getBeanLogin().getUsuario()!=null) {
+		if(getBeanLogin().getUsuario()!=null) {
 //				System.out.println(Encriptar.encriptarSHA512("alex2022"));
-				if(getBeanLogin().getUsuario().getUsuaClave().equals(Encriptar.encriptarSHA512(getBeanLogin().getClave()))) {
-					String key = "Cpa2020";
-					long tiempo= System.currentTimeMillis();		
-					String jwt =Jwts.builder()
-									.signWith(SignatureAlgorithm.HS256, key)
-									.setSubject("Capacitacion Tecnica")
-									.setIssuedAt(new Date(tiempo))
-									.setExpiration(new Date(tiempo+900000))
-									.claim("correo", "")
-									.compact();
-					JsonObject json= Json.createObjectBuilder()
-										.add("JWT", jwt).build();
-									
-					ec = FacesContext.getCurrentInstance().getExternalContext();
-					sesion=(HttpSession)ec.getSession(true);
-					sesion.setAttribute("logeado", true);
-					listaMenuUsuario=new ArrayList<>();
-					listaMenuUsuario=getUsuarioServicioImpl().buscarAccesosUsuario(getBeanLogin().getUsuario().getUsuaUsuario());
-					if(listaMenuUsuario!=null && !listaMenuUsuario.isEmpty()) {
-						List<UsuarioRol> listaRoles=new ArrayList<>();
-						listaRoles=getUsuarioRolDaoImpl().listaUsuarioRolPorUsuario(getBeanLogin().getUsuario().getUsuaId());
-						if(!listaRoles.isEmpty() && listaRoles!=null) {
-							for (UsuarioRol usuarioRol : listaRoles) {
-								sesion.setAttribute("rol", usuarioRol.getRol().getRolId());
-							}
-						}
-						String perfil=null;
-						boolean flagPrimero=true;
-						DefaultSubMenu submenu = new DefaultSubMenu();
-						
-						for (ObjetosMenuDto objetosMenuDto : listaMenuUsuario) {
-							
-							if(flagPrimero) {
-								perfil=objetosMenuDto.getPer_id();								
-					            submenu.setIcon(null);
-					            submenu.setLabel(objetosMenuDto.getPer_nombre());
-					            this.menumodel.getElements().add(submenu);
-					            
-					            DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
-								submenu.getElements().add(item);
-					            flagPrimero=false;
-							}else {
-								if(perfil.equals(objetosMenuDto.getPer_id())) {
-									DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
-									submenu.getElements().add(item);
-								}else {
-									submenu = new DefaultSubMenu();
-									perfil=objetosMenuDto.getPer_id();								
-						            submenu.setIcon(null);
-						            submenu.setLabel(objetosMenuDto.getPer_nombre());
-						            this.menumodel.getElements().add(submenu);
-
-						            DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
-
-						            submenu.getElements().add(item);
-								}
+			if(getBeanLogin().getUsuario().getUsuaClave().equals(Encriptar.encriptarSHA512(getBeanLogin().getClave()))) {
+				String key = "Cpa2020";
+				long tiempo= System.currentTimeMillis();		
+				String jwt =Jwts.builder()
+								.signWith(SignatureAlgorithm.HS256, key)
+								.setSubject("Capacitacion Tecnica")
+								.setIssuedAt(new Date(tiempo))
+								.setExpiration(new Date(tiempo+900000))
+								.claim("correo", "")
+								.compact();
+				JsonObject json= Json.createObjectBuilder()
+									.add("JWT", jwt).build();
 								
-							}
+				ec = FacesContext.getCurrentInstance().getExternalContext();
+				sesion=(HttpSession)ec.getSession(true);
+				sesion.setAttribute("logeado", true);
+				listaMenuUsuario=new ArrayList<>();
+				listaMenuUsuario=getUsuarioServicioImpl().buscarAccesosUsuario(getBeanLogin().getUsuario().getUsuaUsuario());
+				if(listaMenuUsuario!=null && !listaMenuUsuario.isEmpty()) {
+					List<UsuarioRol> listaRoles=new ArrayList<>();
+					listaRoles=getUsuarioRolDaoImpl().listaUsuarioRolPorUsuario(getBeanLogin().getUsuario().getUsuaId());
+					if(!listaRoles.isEmpty() && listaRoles!=null) {
+						for (UsuarioRol usuarioRol : listaRoles) {
+							sesion.setAttribute("rol", usuarioRol.getRol().getRolId());
 						}
-						getBeanLogin().setConfiguraciones(getConfiguracionesServicioImpl().listaConfiguraciones().get(0));
 					}
-					this.menumodel.getElements();
-					respuesta="/paginas/index.xhtml";
-				}else {
-					Mensaje.verMensaje("growl",FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.clave"));
-				}
+					String perfil=null;
+					boolean flagPrimero=true;
+					DefaultSubMenu submenu = new DefaultSubMenu();
 					
+					for (ObjetosMenuDto objetosMenuDto : listaMenuUsuario) {
+						
+						if(flagPrimero) {
+							perfil=objetosMenuDto.getPer_id();								
+							submenu.setIcon(null);
+							submenu.setLabel(objetosMenuDto.getPer_nombre());
+							this.menumodel.getElements().add(submenu);
+							
+							DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
+							submenu.getElements().add(item);
+							flagPrimero=false;
+						}else {
+							if(perfil.equals(objetosMenuDto.getPer_id())) {
+								DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
+								submenu.getElements().add(item);
+							}else {
+								submenu = new DefaultSubMenu();
+								perfil=objetosMenuDto.getPer_id();								
+								submenu.setIcon(null);
+								submenu.setLabel(objetosMenuDto.getPer_nombre());
+								this.menumodel.getElements().add(submenu);
+
+								DefaultMenuItem item= DefaultMenuItem.builder().value(objetosMenuDto.getAcc_nombre()).url(objetosMenuDto.getAcc_ruta()).icon(objetosMenuDto.getAcc_icono()).build();
+
+								submenu.getElements().add(item);
+							}
+							
+						}
+					}
+					getBeanLogin().setConfiguraciones(getConfiguracionesServicioImpl().listaConfiguraciones().get(0));
+				}
+				this.menumodel.getElements();
+				respuesta="/paginas/index.xhtml";
 			}else {
-				Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));
+				Mensaje.verMensaje("growl",FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.clave"));
 			}
-		} catch (DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "validarUsuario" + ": ").append(e.getMessage()));
+				
+		}else {
+			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));
 		}
 		return respuesta;
 		
@@ -218,18 +213,13 @@ public class BackingLogin implements Serializable{
 	 * Valida el documento de identidad
 	 */
 	public void validarDocumentoIdentidadUsuario() {
-		try {
-			getBeanLogin().setUsuario(new Usuario());
-			getBeanLogin().setUsuario(getUsuarioServicioImpl().consultarUsuarioPorDocumento(getBeanLogin().getDocumentoIdentidad()));
-			if(getBeanLogin().getUsuario()!=null) {
-				getBeanLogin().setPanelDocumento(false);
-				getBeanLogin().setPanelValida(true);
-			}else {
-				Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));
-			}
-		} catch (DaoException e) {
-			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));			
-			log.error(new StringBuilder().append(this.getClass().getName() + "." + "validarDatosUsuario" + ": ").append(e.getMessage()));
+		getBeanLogin().setUsuario(new Usuario());
+		getBeanLogin().setUsuario(getUsuarioServicioImpl().consultarUsuarioPorDocumento(getBeanLogin().getDocumentoIdentidad()));
+		if(getBeanLogin().getUsuario()!=null) {
+			getBeanLogin().setPanelDocumento(false);
+			getBeanLogin().setPanelValida(true);
+		}else {
+			Mensaje.verMensaje(FacesMessage.SEVERITY_ERROR, getMensajesBacking().getPropiedad("error"), getMensajesBacking().getPropiedad("error.usuario"));
 		}
 	}
 	/**

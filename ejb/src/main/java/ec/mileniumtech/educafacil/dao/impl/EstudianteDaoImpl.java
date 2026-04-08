@@ -35,11 +35,11 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long> impleme
 	 * Busca estudiantes por el apellido
 	 * @param apellidos
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Estudiante> estudiantesPorApellido(String apellidos) throws DaoException{
+	public List<Estudiante> estudiantesPorApellido(String apellidos){
 		try {
 			Query query=getEntityManager().createNamedQuery(Estudiante.BUSCA_POR_APELLIDO);
 			query.setParameter("apellidos", "%"+apellidos.toLowerCase()+"%");
@@ -54,10 +54,10 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long> impleme
 	 * Busca un estudiante por cedula
 	 * @param cedula
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public Estudiante estudiantesPorCedula(String cedula) throws DaoException{
+	public Estudiante estudiantesPorCedula(String cedula){
 		try {
 			Query query=getEntityManager().createNamedQuery(Estudiante.BUSCA_POR_CEDULA);
 			query.setParameter("cedula", cedula);
@@ -71,11 +71,11 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long> impleme
 	/**
 	 * Actualiza un estudiante
 	 * @param estudiante
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void actualizaEstudiante(Estudiante estudiante) throws DaoException, EntidadDuplicadaException{
+	public void actualizaEstudiante(Estudiante estudiante){
 		try{
 			Persona persona = estudiante.getPersona();
 			getEntityManager().merge(estudiante);
@@ -95,3 +95,4 @@ public class EstudianteDaoImpl extends GenericoDaoImpl<Estudiante, Long> impleme
 		}	
 	}
 }
+

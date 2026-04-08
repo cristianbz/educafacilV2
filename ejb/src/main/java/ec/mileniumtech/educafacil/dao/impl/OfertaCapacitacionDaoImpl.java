@@ -39,10 +39,10 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @param especialidad
 	 * @param curso
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public OfertaCapacitacion buscarOfertaCapacitacion(int area,int especialidad,int curso) throws DaoException{
+	public OfertaCapacitacion buscarOfertaCapacitacion(int area,int especialidad,int curso){
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.OFERTA_CAPACITACION);
 			query.setParameter("area", area);
@@ -59,11 +59,11 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * Devuelve las especialidades por area
 	 * @param area
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Especialidad> listaEspecialidadPorArea(int area)throws DaoException{
+	public List<Especialidad> listaEspecialidadPorArea(int area){
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.LISTA_ESPECIALIDAD_POR_AREA);
 			query.setParameter("area", area);
@@ -79,11 +79,11 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * @param area
 	 * @param especialidad
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Curso> listaCursosPorAreaEspecilidad(int area,int especialidad) throws DaoException{
+	public List<Curso> listaCursosPorAreaEspecilidad(int area,int especialidad){
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.LISTA_CURSOS_POR_AREA_ESPECIALIDAD);
 			query.setParameter("area", area);
@@ -99,10 +99,10 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * Retorna una oferta de capacitacion por curso
 	 * @param codigoCurso
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public OfertaCapacitacion buscarPorCurso(int codigoCurso)throws DaoException{
+	public OfertaCapacitacion buscarPorCurso(int codigoCurso){
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.BUSCAR_POR_CURSO);
 			return (OfertaCapacitacion) query.getSingleResult();
@@ -115,11 +115,11 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	/**
 	 * Carga todas las ofertas de capacitacion
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<OfertaCapacitacion> listarOfertasCapacitacion() throws DaoException{
+	public List<OfertaCapacitacion> listarOfertasCapacitacion(){
 		try {
 			Query query=getEntityManager().createNamedQuery(OfertaCapacitacion.CARGAR_TODAS_OFERTAS);
 			return query.getResultList();
@@ -133,11 +133,11 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 	 * Agrega una oferta de capacitacion
 	 * @param ofertaCapacitacion
 	 * @param ofertaCursos
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarOfertaCapacitacion(OfertaCapacitacion ofertaCapacitacion, OfertaCursos ofertaCursos) throws DaoException,EntidadDuplicadaException{
+	public void agregarOfertaCapacitacion(OfertaCapacitacion ofertaCapacitacion, OfertaCursos ofertaCursos){
 		try {
 			getEntityManager().persist(ofertaCapacitacion);
 			ofertaCursos.setOfertaCapacitacion(ofertaCapacitacion);
@@ -156,3 +156,4 @@ public class OfertaCapacitacionDaoImpl extends GenericoDaoImpl<OfertaCapacitacio
 			}	
 	}
 }
+

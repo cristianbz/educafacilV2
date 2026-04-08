@@ -31,7 +31,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<EvaluacionCurso> listaDeEvaluacionesDeCurso()throws DaoException{
+	public List<EvaluacionCurso> listaDeEvaluacionesDeCurso(){
 		try {
 			Query query=getEntityManager().createNamedQuery(EvaluacionCurso.CARGAR_EVALUACION_CURSO);
 			
@@ -47,10 +47,10 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 	 * @param codigo  codigo del curso
 	 * @param codigoobj codigo del objeto de evaluacion
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public List<EvaluacionCurso> listaDeEvaluacionesPorCurso(int codigo, int codigoobj)throws DaoException{
+	public List<EvaluacionCurso> listaDeEvaluacionesPorCurso(int codigo, int codigoobj){
 		try {
 			Query query=getEntityManager().createNamedQuery(EvaluacionCurso.CARGAR_ENCUESTAS_POR_CURSO_OBJETOEVALUACION);
 			query.setParameter("codigo", codigo);
@@ -66,10 +66,10 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 	 * Lista las encuestas por el curso activo
 	 * @param codigo codigo de curso
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public List<EvaluacionCurso> listaDeEvaluacionesDeCursoActivas(int codigoC)throws DaoException{
+	public List<EvaluacionCurso> listaDeEvaluacionesDeCursoActivas(int codigoC){
 		try {
 			Query query=getEntityManager().createNamedQuery(EvaluacionCurso.CARGAR_ENCUESTAS_POR_CURSO_ACTIVO);
 			query.setParameter("codigoOferta", codigoC);
@@ -81,7 +81,7 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 		}
 	}
 	@Override
-	public EvaluacionCurso agregarEvaluacionCurso(EvaluacionCurso evaluacionCurso)throws DaoException,EntidadDuplicadaException {
+	public EvaluacionCurso agregarEvaluacionCurso(EvaluacionCurso evaluacionCurso) {
 		try{
 			if(evaluacionCurso.getEvcuId()==null)
 				getEntityManager().persist(evaluacionCurso);
@@ -102,3 +102,4 @@ public class EvaluacionCursoDaoImpl extends GenericoDaoImpl<EvaluacionCurso, Lon
 		}	
 	}
 }
+

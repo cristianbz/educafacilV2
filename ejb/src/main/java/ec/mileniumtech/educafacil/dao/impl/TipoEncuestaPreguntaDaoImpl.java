@@ -33,7 +33,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<TipoEncuestaPregunta> listaDePreguntas(int codigoP)throws DaoException{
+	public List<TipoEncuestaPregunta> listaDePreguntas(int codigoP){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_PREGUNTA);
 			query.setParameter("codigo", codigoP);
@@ -47,7 +47,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 }
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<TipoEncuestaPregunta> listaDeTiposDeEncuestas()throws DaoException{
+	public List<TipoEncuestaPregunta> listaDeTiposDeEncuestas(){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_TIPO_ENCUESTA);
 			return query.getResultList();
@@ -61,10 +61,10 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
  * 
  * @param codigoT para el id del tipo de encuesta
  * @return
- * @throws DaoException
+ * @
  */
 	@Override
-	public List<TipoEncuestaPregunta> listaDeEncuestas(int codigoT)throws DaoException{
+	public List<TipoEncuestaPregunta> listaDeEncuestas(int codigoT){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_ENCUESTAS);
 			query.setParameter("codigoTipo", codigoT);
@@ -77,7 +77,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 	}
 	
 	@Override
-	public List<TipoEncuestaPregunta> listaPorTipoDeEncuestas(int codigoTipo)throws DaoException{
+	public List<TipoEncuestaPregunta> listaPorTipoDeEncuestas(int codigoTipo){
 		try {
 			Query query=getEntityManager().createNamedQuery(TipoEncuestaPregunta.CARGAR_POR_TIPO_ENCUESTA);
 			query.setParameter("codigo", codigoTipo);
@@ -90,7 +90,7 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 	}
 	
 	@Override
-	public TipoEncuestaPregunta agregarActualizarTipoEncuestaPregunta(TipoEncuestaPregunta tipoEncuestaPregunta)throws DaoException,EntidadDuplicadaException {
+	public TipoEncuestaPregunta agregarActualizarTipoEncuestaPregunta(TipoEncuestaPregunta tipoEncuestaPregunta) {
 		try{
 			if(tipoEncuestaPregunta.getTeprId()==null)
 				getEntityManager().persist(tipoEncuestaPregunta);
@@ -116,12 +116,12 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 	 * siguiendo el siguiente formato "preg_Descripcion, resp_Descipcion y (preg_ID - resp_Id)"
 	 * @param encuesta 
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<DtoEncuestas> guardarRespuestasEncuestas(int encuesta)
-			throws DaoException {
+			 {
 		try {
 			
 			List <DtoEncuestas> listaRespuestasEncuestas= new ArrayList<DtoEncuestas>();
@@ -148,3 +148,4 @@ public class TipoEncuestaPreguntaDaoImpl extends GenericoDaoImpl<TipoEncuestaPre
 		}
 	}
 }
+

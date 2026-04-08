@@ -35,7 +35,7 @@ public class CategoriaRespuestaDaoImpl extends GenericoDaoImpl<CategoriaRespuest
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CategoriaRespuesta> listaDeCategorias()throws DaoException{
+	public List<CategoriaRespuesta> listaDeCategorias(){
 		try {
 			Query query=getEntityManager().createNamedQuery(CategoriaRespuesta.CARGAR_CATEGORIA);
 			for (Object object : query.getResultList()) {
@@ -56,7 +56,7 @@ public class CategoriaRespuestaDaoImpl extends GenericoDaoImpl<CategoriaRespuest
 		}
 	}
 	@Override
-	public CategoriaRespuesta actualizarCategoriaRespuesta(CategoriaRespuesta categoriaRespuesta)throws DaoException,EntidadDuplicadaException {
+	public CategoriaRespuesta actualizarCategoriaRespuesta(CategoriaRespuesta categoriaRespuesta) {
 		try{
 			if(categoriaRespuesta.getCatrId()==null)
 				getEntityManager().persist(categoriaRespuesta);
@@ -78,7 +78,7 @@ public class CategoriaRespuestaDaoImpl extends GenericoDaoImpl<CategoriaRespuest
 	}
 	
 	@Override
-	public CategoriaRespuesta buscaCategoria(int codigoCategoria)throws DaoException{
+	public CategoriaRespuesta buscaCategoria(int codigoCategoria){
 		try {
 			CategoriaRespuesta categoria=null;
 			Query query=getEntityManager().createNamedQuery(CategoriaRespuesta.BUSCAR_CATEGORIA);
@@ -96,3 +96,4 @@ public class CategoriaRespuestaDaoImpl extends GenericoDaoImpl<CategoriaRespuest
 		}
 	}
 }
+

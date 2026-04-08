@@ -37,7 +37,7 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long> implements PagosD
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void agregarPago(Pagos pago)throws DaoException,EntidadDuplicadaException {
+	public void agregarPago(Pagos pago) {
 		try{
 			getEntityManager().persist(pago);
 			for (DetallePagos detalle : pago.getDetallePagos()) {
@@ -61,7 +61,7 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long> implements PagosD
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<DetallePagos> buscaPagosPorMatricula(int codigoMatricula) throws DaoException{
+	public List<DetallePagos> buscaPagosPorMatricula(int codigoMatricula){
 		try {
 			Query query=getEntityManager().createNamedQuery(Pagos.BUSCAR_DETALLEPAGOS);
 			query.setParameter("codigoMatricula", codigoMatricula);					
@@ -77,11 +77,11 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long> implements PagosD
 	 * @param fechaInicial
 	 * @param fechaFinal
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	public List<DtoFlujoDinero> buscaIngresosReporteria(Date fechaInicial, Date fechaFinal)
-			throws DaoException {
+			 {
 		try {
 			DateFormat formatoFecha = new SimpleDateFormat ("yyyy-MM-dd");
 			SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd",new Locale("es","ES"));
@@ -117,3 +117,4 @@ public class PagosDaoImpl extends GenericoDaoImpl<Pagos, Long> implements PagosD
 		}
 	}
 }
+

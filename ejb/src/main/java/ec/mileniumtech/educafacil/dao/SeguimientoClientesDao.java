@@ -11,21 +11,22 @@ import ec.mileniumtech.educafacil.modelo.persistencia.entity.DetalleSeguimiento;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.SeguimientoClientes;
 
 public interface SeguimientoClientesDao extends GenericoDao<SeguimientoClientes, Long> {
-    void agregarSeguimiento(SeguimientoClientes seguimiento, List<DetalleSeguimiento> detalle) throws DaoException, EntidadDuplicadaException;
-    List<SeguimientoClientes> listaSeguimiento() throws DaoException;
-    List<SeguimientoClientes> listaSeguimientoVendedorAsignado() throws DaoException;
-    List<SeguimientoClientes> listaSeguimientoCampania(Integer campania) throws DaoException;
-    List<SeguimientoClientes> listaSeguimientoCampaniaVendedor(Integer campaniaS) throws DaoException;
-    BigInteger alcanceCampania(int campania) throws DaoException;
-    BigInteger prospectosCampania(int campania, String estado) throws DaoException;
-    List<SeguimientoClientes> listaSeguimientoCampaniaCurso(Integer curso) throws DaoException;
-    List<SeguimientoClientes> listaSeguimientoCampaniaFechas(Date inicio, Date fin) throws DaoException;
-    void actualizarSeguimiento(SeguimientoClientes seguimiento) throws DaoException, EntidadDuplicadaException;
-    SeguimientoClientes seguimiento(int id) throws DaoException;
-    SeguimientoClientes validaNumero(String telefono, int curso, int campania) throws DaoException;
-    List<SeguimientoClientes> listaPendientesLlamada() throws DaoException;
-    BigDecimal totalDatosCRM(String estado) throws DaoException;
-    BigDecimal totalDatosCRMVendedor(String estado, Integer vendedor, Integer campania) throws DaoException;
-    List<DtoMatriculasCurso> listaInteresadosCursoCRM() throws DaoException;
-    List<DtoMatriculasCurso> listaEstadosContactoCursoCRM(String estado) throws DaoException;
+    void agregarSeguimiento(SeguimientoClientes seguimiento, List<DetalleSeguimiento> detalle);
+    List<SeguimientoClientes> listaSeguimiento();
+    List<SeguimientoClientes> listaSeguimientoVendedorAsignado();
+    List<SeguimientoClientes> listaSeguimientoCampania(Integer campania);
+    List<SeguimientoClientes> listaSeguimientoCampaniaVendedor(Integer campaniaS);
+    BigInteger alcanceCampania(int campania);
+    BigInteger prospectosCampania(int campania, String estado);
+    List<SeguimientoClientes> listaSeguimientoCampaniaCurso(Integer curso);
+    List<SeguimientoClientes> listaSeguimientoCampaniaFechas(Date inicio, Date fin);
+    void actualizarSeguimiento(SeguimientoClientes seguimiento);
+    SeguimientoClientes seguimiento(int id);
+    SeguimientoClientes validaNumero(String telefono, int curso, int campania);
+    List<SeguimientoClientes> listaPendientesLlamada();
+    BigDecimal totalDatosCRM(String estado);
+    BigDecimal totalDatosCRMVendedor(String estado, Integer vendedor, Integer campania);
+    List<DtoMatriculasCurso> listaInteresadosCursoCRM();
+    List<DtoMatriculasCurso> listaEstadosContactoCursoCRM(String estado);
 }
+

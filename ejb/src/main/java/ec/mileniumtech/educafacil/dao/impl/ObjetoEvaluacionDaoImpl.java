@@ -31,7 +31,7 @@ public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, L
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ObjetoEvaluacion> listaDeObjetosDeEvaluacion()throws DaoException{
+	public List<ObjetoEvaluacion> listaDeObjetosDeEvaluacion(){
 		try {
 			Query query=getEntityManager().createNamedQuery(ObjetoEvaluacion.CARGAR_OBJETO_EVALUACION);
 			return query.getResultList();
@@ -45,11 +45,11 @@ public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, L
 	 * metodo que actualiza o guarda un objeto de evaluacion
 	 * @param objetoEvaluacion
 	 * @return
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public ObjetoEvaluacion actualizarObjetoEvaluacion(ObjetoEvaluacion objetoEvaluacion)throws DaoException,EntidadDuplicadaException {
+	public ObjetoEvaluacion actualizarObjetoEvaluacion(ObjetoEvaluacion objetoEvaluacion) {
 		try{
 			if(objetoEvaluacion.getObjeId()==null)
 				getEntityManager().persist(objetoEvaluacion);
@@ -70,3 +70,4 @@ public class ObjetoEvaluacionDaoImpl extends GenericoDaoImpl<ObjetoEvaluacion, L
 		}	
 	}
 }
+

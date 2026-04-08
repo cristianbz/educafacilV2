@@ -31,7 +31,7 @@ public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurs
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<DetalleEvaluaCurso> listaDeDetallesDeEvaluacionDeCursos()throws DaoException{
+	public List<DetalleEvaluaCurso> listaDeDetallesDeEvaluacionDeCursos(){
 		try {
 			Query query=getEntityManager().createNamedQuery(DetalleEvaluaCurso.CARGAR_DETALLE_EVALUACION);
 			return query.getResultList();
@@ -43,7 +43,7 @@ public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurs
 	}
 	
 	@Override
-	public void guardarEncuesta(DetalleEvaluaCurso detalle) throws DaoException, EntidadDuplicadaException{
+	public void guardarEncuesta(DetalleEvaluaCurso detalle){
 		try{
 			if (detalle.getDevcId() == null)
 				getEntityManager().persist(detalle);
@@ -64,3 +64,4 @@ public class DetalleEvaluaCursoDaoImpl extends GenericoDaoImpl<DetalleEvaluaCurs
 		}	
 	}
 }
+

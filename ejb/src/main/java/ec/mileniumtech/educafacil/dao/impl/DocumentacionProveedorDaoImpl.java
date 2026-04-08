@@ -30,11 +30,11 @@ public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<Documentacion
 	/**
 	 * Agrega actualiza la documentacion de un proveedor
 	 * @param documentacionProveedor
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarDocumentacionProveedor(DocumentacionProveedor documentacionProveedor)throws DaoException, EntidadDuplicadaException{
+	public void agregarActualizarDocumentacionProveedor(DocumentacionProveedor documentacionProveedor){
 		try{
 			if (documentacionProveedor.getDocpId()==0)
 				getEntityManager().persist(documentacionProveedor);
@@ -57,10 +57,10 @@ public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<Documentacion
 	 * Devuelve la documentacion de un proveedor
 	 * @param codigoProveedor
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
-	public DocumentacionProveedor buscarDocumentacionPorProveedor(int codigoProveedor)throws DaoException{
+	public DocumentacionProveedor buscarDocumentacionPorProveedor(int codigoProveedor){
 		try {
 			Query query=getEntityManager().createNamedQuery(DocumentacionProveedor.DOCUMENTACION_POR_PROVEEDOR);
 			query.setParameter("codigoProveedor", codigoProveedor);
@@ -72,3 +72,4 @@ public class DocumentacionProveedorDaoImpl extends GenericoDaoImpl<Documentacion
 		}
 	}
 }
+

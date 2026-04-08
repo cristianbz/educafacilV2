@@ -5,5 +5,6 @@ import ec.mileniumtech.educafacil.dao.excepciones.DaoException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.MedioInformacion;
 
 public interface MedioInformacionDao extends GenericoDao<MedioInformacion, Long> {
-    List<MedioInformacion> listaMediosInformacion() throws DaoException;
+    List<MedioInformacion> listaMediosInformacion();
 }
+

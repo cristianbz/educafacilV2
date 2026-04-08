@@ -5,6 +5,7 @@ import ec.mileniumtech.educafacil.dao.excepciones.EntidadDuplicadaException;
 import ec.mileniumtech.educafacil.modelo.persistencia.entity.DocumentacionProveedor;
 
 public interface DocumentacionProveedorDao extends GenericoDao<DocumentacionProveedor, Long> {
-    void agregarActualizarDocumentacionProveedor(DocumentacionProveedor documentacionProveedor) throws DaoException, EntidadDuplicadaException;
-    DocumentacionProveedor buscarDocumentacionPorProveedor(int codigoProveedor) throws DaoException;
+    void agregarActualizarDocumentacionProveedor(DocumentacionProveedor documentacionProveedor);
+    DocumentacionProveedor buscarDocumentacionPorProveedor(int codigoProveedor);
 }
+

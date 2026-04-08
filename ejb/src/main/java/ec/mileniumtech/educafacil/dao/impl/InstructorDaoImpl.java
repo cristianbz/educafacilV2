@@ -34,36 +34,34 @@ public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long> impleme
 	/**
 	 * Devuelve la lista de instructores
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Instructor> listaInstructores() throws DaoException{
+	public List<Instructor> listaInstructores() {
 		try {
 			Query query=getEntityManager().createNamedQuery(Instructor.LISTADO_INSTRUCTORES);
 			return query.getResultList();
 		}catch(NoResultException e) {
 			return null;
 		}catch(Exception e) {
-			throw new DaoException(e);
+			throw new DaoException("Error al listar instructores", e);
 		}
 	}
 	/**
 	 * Agrega actualiza un instructor
 	 * @param instructor
-	 * @throws DaoException
-	 * @throws EntidadDuplicadaException
+	 * @
+	 * @
 	 */
 	@Override
-	public void agregarActualizarInstructor(Instructor instructor) throws DaoException,EntidadDuplicadaException{
+	public void agregarActualizarInstructor(Instructor instructor) {
 		try{
-			Persona persona=new Persona();
 			if(instructor.getPersona().getPersId()==0)
 				getEntityManager().persist(instructor.getPersona());
 			else
 				getEntityManager().merge(instructor.getPersona());
-			persona=instructor.getPersona();
-			instructor.setPersona(persona);
+			
 			if(instructor.getInstId()==0)
 				getEntityManager().persist(instructor);
 			else
@@ -77,9 +75,10 @@ public class InstructorDaoImpl extends GenericoDaoImpl<Instructor, Long> impleme
 			    if (t instanceof ConstraintViolationException) {
 			    	throw new EntidadDuplicadaException(e);
 			    }
-			throw new DaoException(e);
+			throw new DaoException("Error de persistencia en instructor", e);
 		} 	catch (Exception e) {
-			throw new DaoException(e);
+			throw new DaoException("Error inesperado en instructor", e);
 		}	
 	}
 }
+

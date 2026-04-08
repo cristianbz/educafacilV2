@@ -30,11 +30,11 @@ public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long> implements CursoD
 	/**
 	 * Consulta los cursos existentes
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Curso> listaCursos()throws DaoException{
+	public List<Curso> listaCursos(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Curso.CARGAR_CURSOS);
 			return query.getResultList();
@@ -47,7 +47,7 @@ public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long> implements CursoD
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Curso> listaOfertaCursosActivos()throws DaoException{
+	public List<Curso> listaOfertaCursosActivos(){
 		try {
 			Query query=getEntityManager().createNamedQuery(Curso.OFERTA_CURSOS_ACTIVOS);
 			return query.getResultList();
@@ -58,3 +58,4 @@ public class CursoDaoImpl extends GenericoDaoImpl<Curso, Long> implements CursoD
 		}
 	}
 }
+

@@ -29,11 +29,11 @@ public class MedioInformacionDaoImpl extends GenericoDaoImpl<MedioInformacion, L
 	/**
 	 * Consulta los medios de comunicacion existentes
 	 * @return
-	 * @throws DaoException
+	 * @
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<MedioInformacion> listaMediosInformacion() throws DaoException{
+	public List<MedioInformacion> listaMediosInformacion(){
 		try {
 			Query query=getEntityManager().createNamedQuery(MedioInformacion.LISTADO_MEDIOS_INFORMACION);
 			return query.getResultList();
@@ -44,3 +44,4 @@ public class MedioInformacionDaoImpl extends GenericoDaoImpl<MedioInformacion, L
 		}
 	}
 }
+
